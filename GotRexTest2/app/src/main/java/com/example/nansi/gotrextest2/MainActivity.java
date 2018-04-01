@@ -27,8 +27,8 @@ public class MainActivity extends AppCompatActivity {
                 case R.id.navigation_bath:
                     mTextMessage.setText(R.string.title_bath);
                     return true;
-                case R.id.navigation_status:
-                    mTextMessage.setText(R.string.title_status);
+                case R.id.navigation_play:
+                    mTextMessage.setText(R.string.title_play);
                     return true;
                 case R.id.navigation_sleep:
                     mTextMessage.setText(R.string.title_sleep);
