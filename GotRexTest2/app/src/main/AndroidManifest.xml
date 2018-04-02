@@ -17,16 +17,17 @@
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name">
-            <intent-filter>
+            <!--intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            </intent-filter-->
         </activity>
 
         <!-- uses-library android:name="com.google.android.things" / -->
 
-        <activity android:name=".NewLauncher">
+        <activity android:name=".NewLauncher"
+            android:noHistory="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -40,10 +41,11 @@
             </intent-filter>
         </activity>
 
-        <uses-library android:name="com.google.android.things" />
+        <!--uses-library android:name="com.google.android.things" /-->
 
-        <activity android:name=".eggStart">
-            <intent-filter>
+        <activity android:name=".eggStart"
+            android:noHistory="true" >
+            <!--intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -53,7 +55,7 @@
 
                 <category android:name="android.intent.category.IOT_LAUNCHER" />
                 <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
+            </intent-filter-->
         </activity>
     </application>
 

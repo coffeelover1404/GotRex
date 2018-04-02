@@ -2,6 +2,7 @@ package com.example.nansi.gotrextest2;
 
 import android.animation.LayoutTransition;
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -31,14 +32,19 @@ public class NewLauncher extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_launcher);
+        init();
     }
 
-    final Button update = findViewById(R.id.update_user);
+    public Button butt;
 
-    update.setOnClickListener(new View.OnClickListener() {
-        @Override
-        public void onClick (View v) {// Adding a view will cause a
-            //LayoutTransition animation container.addView(new ColoredView(context), 1);
-        }
-    });
+    public void init(){
+        butt = (Button)findViewById(R.id.update_user);
+        butt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent startGame = new Intent(NewLauncher.this, eggStart.class);
+                startActivity(startGame);
+            }
+        });
+    }
 }
