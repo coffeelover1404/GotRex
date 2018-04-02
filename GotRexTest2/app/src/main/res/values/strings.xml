@@ -11,7 +11,7 @@
     <string name="hintToPutName">Enter your pet name here!</string>
     <string name="buttonPutName">OK</string>
 
-    <string name="permission_rationale">"Contacts permissions are needed for providing email
-        completions."
-    </string>
+    <!-- For new Launcher -->
+    <string name="egg">new egg</string>
+
 </resources>
