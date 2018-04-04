@@ -38,7 +38,7 @@ public class NewLauncher extends Activity {
     public Button butt;
 
     public void init(){
-        butt = (Button)findViewById(R.id.update_user);
+        butt = (Button)findViewById(R.id.button);
         butt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
