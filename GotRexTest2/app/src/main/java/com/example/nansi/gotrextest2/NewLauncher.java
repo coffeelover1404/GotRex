@@ -1,8 +1,10 @@
 package com.example.nansi.gotrextest2;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
@@ -31,6 +33,7 @@ import android.widget.EditText;
 public class NewLauncher extends Activity {
 
     private EditText editText;
+    private Button okButton;
     private GotRexDatabase gotRexDatabase;
 
     public NewLauncher() {
@@ -43,32 +46,32 @@ public class NewLauncher extends Activity {
         init();
 
         editText = findViewById(R.id.editText);
-        //aa = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, toDoItems);
+        okButton = findViewById(R.id.button);
 
-        editText.setOnKeyListener(new View.OnKeyListener() {
-            public boolean onKey(View v, int keyCode, KeyEvent keyEvent) {
-                /*if (keyCode == KeyEvent.KEYCODE_ENTER &&
-                        keyEvent.getAction() == KeyEvent.ACTION_DOWN) {
-*/
+        /*okButton.setOnClickListener(new View.OnClickListener() {
+                if(editText.getText().length() > 0){
+                    gotRexDatabase = new GotRexDatabase(this);
+                    gotRexDatabase.open();
                     String Name = editText.getText().toString();
                     editText.setText("");
 
                     gotRexDatabase.insertName(Name);
-                    return true;
                 }
-                //return false;
-  //          }
-        });
+                else{
+                    Context mContext;
+                    new AlertDialog.Builder(mContext).setTitle("Error").setMessage("Please name your pet!")
+                            .setPositiveButton(" OK",null).show();
+                }
 
-        gotRexDatabase = new GotRexDatabase(this);
-        //database.open();
+        });*/
+
     }
 
-    public Button butt;
+    public Button btn;
 
     public void init(){
-        butt = (Button)findViewById(R.id.button);
-        butt.setOnClickListener(new View.OnClickListener() {
+        btn = (Button)findViewById(R.id.button);
+        btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent startGame = new Intent(NewLauncher.this, EggStart.class);
