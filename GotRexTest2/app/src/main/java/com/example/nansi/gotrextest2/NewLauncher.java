@@ -35,6 +35,7 @@ public class NewLauncher extends Activity {
     private EditText editText;
     private Button okButton;
     private GotRexDatabase gotRexDatabase;
+    private Context mContext;
 
     public NewLauncher() {
     }
@@ -43,27 +44,30 @@ public class NewLauncher extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_launcher);
-        init();
 
         editText = findViewById(R.id.editText);
         okButton = findViewById(R.id.button);
 
-        /*okButton.setOnClickListener(new View.OnClickListener() {
-                if(editText.getText().length() > 0){
-                    gotRexDatabase = new GotRexDatabase(this);
-                    gotRexDatabase.open();
+        gotRexDatabase = new GotRexDatabase(this);
+        gotRexDatabase.open();
+
+        okButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View arg0) {
+                if (editText.getText().length() > 0) {
                     String Name = editText.getText().toString();
                     editText.setText("");
 
                     gotRexDatabase.insertName(Name);
-                }
-                else{
-                    Context mContext;
-                    new AlertDialog.Builder(mContext).setTitle("Error").setMessage("Please name your pet!")
-                            .setPositiveButton(" OK",null).show();
-                }
+                    Intent startGame = new Intent(NewLauncher.this, EggStart.class);
+                    startActivity(startGame);
+                } else {
 
-        });*/
+                    new AlertDialog.Builder(mContext).setTitle("Error").setMessage("Please name your pet!")
+                            .setPositiveButton(" OK", null).show();
+                }
+            }
+
+        });
 
     }
 
@@ -74,8 +78,7 @@ public class NewLauncher extends Activity {
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent startGame = new Intent(NewLauncher.this, EggStart.class);
-                startActivity(startGame);
+
             }
         });
     }
