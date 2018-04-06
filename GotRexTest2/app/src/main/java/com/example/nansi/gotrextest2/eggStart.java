@@ -22,7 +22,7 @@ import android.os.Bundle;
  *
  * @see <a href="https://github.com/androidthings/contrib-drivers#readme">https://github.com/androidthings/contrib-drivers#readme</a>
  */
-public class eggStart extends Activity {
+public class EggStart extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
