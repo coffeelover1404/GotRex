@@ -3,6 +3,7 @@ package com.example.nansi.gotrextest2;
 import android.app.Activity;
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
@@ -53,8 +54,13 @@ public class GotRexDatabase extends Activity {
         return db.insert(TABLE_NAME, null, newGotRexValues);
     }
 
+    public Cursor seePetInfo(){
+        return db.query(TABLE_NAME, new String[] {COL_2},
+                null, null, null, null, null);
+    }
+
     ////Create table///////
-    public class gotRexDatabaseOpen extends SQLiteOpenHelper {
+    private static class gotRexDatabaseOpen extends SQLiteOpenHelper {
 
         private static final String CREATE_TABLE = " CREATE TABLE " +
                 TABLE_NAME + " (" + COL_1 + " INTEGER PRIMARY KEY AUTOINCREMENT, " + COL_2 + " TEXT NOT NULL, " + COL_3 +
