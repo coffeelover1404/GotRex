@@ -46,6 +46,10 @@ public class GotRexDatabase extends Activity {
         ContentValues newGotRexValues = new ContentValues();
 
         newGotRexValues.put(COL_2, name);
+        newGotRexValues.put(COL_3,0);
+        newGotRexValues.put(COL_4,0);
+        newGotRexValues.put(COL_5,0);
+        newGotRexValues.put(COL_6,0);
         return db.insert(TABLE_NAME, null, newGotRexValues);
     }
 
