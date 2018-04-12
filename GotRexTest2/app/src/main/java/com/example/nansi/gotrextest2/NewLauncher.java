@@ -37,11 +37,10 @@ public class NewLauncher extends Activity {
     private GotRexDatabase gotRexDatabase;
     private Context mContext;
 
-    public NewLauncher() {
-    }
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        //if ไป intent หน้าอื่น
+        //else all down here ไม่มั่นใจว่าทั้งหมดนี่จริงๆ รึเปล่านะ แต่เดาว่างั้น
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_launcher);
 
@@ -69,17 +68,5 @@ public class NewLauncher extends Activity {
 
         });
 
-    }
-
-    public Button btn;
-
-    public void init(){
-        btn = (Button)findViewById(R.id.button);
-        btn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-
-            }
-        });
     }
 }
