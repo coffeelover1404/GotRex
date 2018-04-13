@@ -60,10 +60,10 @@ public class NewLauncher extends Activity {
                     Intent startGame = new Intent(NewLauncher.this, CrackEgg.class);
                     startActivity(startGame);
                 } else {
-                    String Name = "default name";
-                    editText.setText("");
+                    //String Name = "default name";
+                    //editText.setText("");
 
-                    gotRexDatabase.insertName(Name);
+                    //gotRexDatabase.insertName(Name);
                     Intent startGame = new Intent(NewLauncher.this, CrackEgg.class);
                     startActivity(startGame);
                     /*new AlertDialog.Builder(mContext).setTitle("Error").setMessage("Please name your pet!")
