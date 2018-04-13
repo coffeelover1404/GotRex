@@ -1,5 +1,8 @@
 package com.example.nansi.gotrextest2;
 
+//import android.app.FragmentTransaction;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -18,9 +21,15 @@ public class MainActivity extends AppCompatActivity {
 
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            FragmentTransaction transaction = fragmentManager.beginTransaction();
             switch (item.getItemId()) {
                 case R.id.navigation_home:
-                    mTextMessage.setText(R.string.title_home);
+                    setTitle("Home");
+                    transaction.replace(R.id.content, new LittleGotRex()).commit();
+                    //LittleGotRex littleGotRex = new LittleGotRex();
+                    //fragmentTransaction.replace(R.id.fram, fragment, "LittleGotRex");
+                    //fragmentTransaction.commit();
                     return true;
                 case R.id.navigation_eat:
                     mTextMessage.setText(R.string.title_eat);
@@ -51,6 +60,10 @@ public class MainActivity extends AppCompatActivity {
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
         //BottomNavigationView bottomNavigationView = (BottomNavigationView)findViewById(R.id.bottom_navigation);
         BottomNavigationViewHelper.removeShiftMode(navigation);
+
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction transaction = fragmentManager.beginTransaction();
+        transaction.replace(R.id.content, new LittleGotRex()).commit();
     }
 
 }
