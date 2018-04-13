@@ -1,7 +1,11 @@
 package com.example.nansi.gotrextest2;
 
 import android.app.Activity;
+import android.content.Intent;
+import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
+import android.os.Handler;
+import android.widget.ImageView;
 
 /**
  * Skeleton of an Android Things activity.
@@ -24,9 +28,27 @@ import android.os.Bundle;
  */
 public class CrackEgg extends Activity {
 
+    ImageView imageView;
+    AnimationDrawable anim;
+    private static int SPLASH_TIME_OUT = 4000;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_crack_egg);
+
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                Intent eggWait = new Intent(CrackEgg.this, NewLauncher.class);
+                startActivity(eggWait);
+                finish();
+            }
+        }, SPLASH_TIME_OUT);
+        imageView = findViewById(R.id.imageEgg);
+        if(imageView == null) throw new AssertionError();
+        imageView.setBackgroundResource(R.drawable.animation_egg);
+
+        anim = (AnimationDrawable)imageView.getBackground();
+        anim.start();
     }
 }
