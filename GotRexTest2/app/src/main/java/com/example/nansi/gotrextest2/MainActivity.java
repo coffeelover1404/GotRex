@@ -7,7 +7,6 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.MenuItem;
 import android.widget.TextView;
 
@@ -26,13 +25,14 @@ public class MainActivity extends AppCompatActivity {
             switch (item.getItemId()) {
                 case R.id.navigation_home:
                     setTitle("Home");
-                    transaction.replace(R.id.content, new LittleGotRex()).commit();
-                    //LittleGotRex littleGotRex = new LittleGotRex();
-                    //fragmentTransaction.replace(R.id.fram, fragment, "LittleGotRex");
+                    transaction.replace(R.id.content, new HomeFragment()).commit();
+                    //HomeFragment littleGotRex = new HomeFragment();
+                    //fragmentTransaction.replace(R.id.fram, fragment, "HomeFragment");
                     //fragmentTransaction.commit();
                     return true;
                 case R.id.navigation_eat:
-                    mTextMessage.setText(R.string.title_eat);
+                    setTitle("Eat");
+                    transaction.replace(R.id.content, new EatFragment()).commit();
                     return true;
                 case R.id.navigation_bath:
                     mTextMessage.setText(R.string.title_bath);
@@ -61,9 +61,10 @@ public class MainActivity extends AppCompatActivity {
         //BottomNavigationView bottomNavigationView = (BottomNavigationView)findViewById(R.id.bottom_navigation);
         BottomNavigationViewHelper.removeShiftMode(navigation);
 
+        setTitle("Home");
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction transaction = fragmentManager.beginTransaction();
-        transaction.replace(R.id.content, new LittleGotRex()).commit();
+        transaction.replace(R.id.content, new HomeFragment()).commit();
     }
 
 }
