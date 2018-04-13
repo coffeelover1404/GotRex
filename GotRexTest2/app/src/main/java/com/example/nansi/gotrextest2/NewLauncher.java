@@ -1,11 +1,15 @@
 package com.example.nansi.gotrextest2;
 
-import android.animation.LayoutTransition;
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
+import android.view.KeyEvent;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+
 
 /**
  * Skeleton of an Android Things activity.
@@ -28,23 +32,46 @@ import android.widget.Button;
  */
 public class NewLauncher extends Activity {
 
+    private EditText editText;
+    private Button okButton;
+    private GotRexDatabase gotRexDatabase;
+    private Context mContext;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        //if ไป intent หน้าอื่น
+        //else all down here ไม่มั่นใจว่าทั้งหมดนี่จริงๆ รึเปล่านะ แต่เดาว่างั้น
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_launcher);
-        init();
-    }
 
-    public Button butt;
+        editText = findViewById(R.id.editText);
+        okButton = findViewById(R.id.button);
 
-    public void init(){
-        butt = (Button)findViewById(R.id.update_user);
-        butt.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent startGame = new Intent(NewLauncher.this, eggStart.class);
-                startActivity(startGame);
+        gotRexDatabase = new GotRexDatabase(this);
+        gotRexDatabase.open();
+
+        okButton.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View arg0) {
+                if (editText.getText().length() > 0) {
+                    String Name = editText.getText().toString();
+                    editText.setText("");
+
+                    gotRexDatabase.insertName(Name);
+                    Intent startGame = new Intent(NewLauncher.this, CrackEgg.class);
+                    startActivity(startGame);
+                } else {
+                    //String Name = "default name";
+                    //editText.setText("");
+
+                    //gotRexDatabase.insertName(Name);
+                    Intent startGame = new Intent(NewLauncher.this, CrackEgg.class);
+                    startActivity(startGame);
+                    /*new AlertDialog.Builder(mContext).setTitle("Error").setMessage("Please name your pet!")
+                        .setPositiveButton(" OK", null).show();*/
             }
+            }
+
         });
+
     }
 }

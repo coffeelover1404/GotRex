@@ -1,28 +1,38 @@
 package com.example.nansi.gotrextest2;
 
+//import android.app.FragmentTransaction;
+import android.support.v4.app.FragmentManager;
+import android.support.v4.app.FragmentTransaction;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.MenuItem;
 import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
     private TextView mTextMessage;
+    public boolean setName = false;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
 
         @Override
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+            FragmentManager fragmentManager = getSupportFragmentManager();
+            FragmentTransaction transaction = fragmentManager.beginTransaction();
             switch (item.getItemId()) {
                 case R.id.navigation_home:
-                    mTextMessage.setText(R.string.title_home);
+                    setTitle("Home");
+                    transaction.replace(R.id.content, new HomeFragment()).commit();
+                    //HomeFragment littleGotRex = new HomeFragment();
+                    //fragmentTransaction.replace(R.id.fram, fragment, "HomeFragment");
+                    //fragmentTransaction.commit();
                     return true;
                 case R.id.navigation_eat:
-                    mTextMessage.setText(R.string.title_eat);
+                    setTitle("Eat");
+                    transaction.replace(R.id.content, new EatFragment()).commit();
                     return true;
                 case R.id.navigation_bath:
                     mTextMessage.setText(R.string.title_bath);
@@ -50,6 +60,11 @@ public class MainActivity extends AppCompatActivity {
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
         //BottomNavigationView bottomNavigationView = (BottomNavigationView)findViewById(R.id.bottom_navigation);
         BottomNavigationViewHelper.removeShiftMode(navigation);
+
+        setTitle("Home");
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        FragmentTransaction transaction = fragmentManager.beginTransaction();
+        transaction.replace(R.id.content, new HomeFragment()).commit();
     }
 
 }
