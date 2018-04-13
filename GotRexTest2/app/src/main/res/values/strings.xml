@@ -28,8 +28,10 @@
         completions."
     </string>
 
-    <!-- For image in first fragment-->
+    <!-- For object in fragment-->
     <string name="Baby">Baby</string>
+    <string name="Food1">sushi</string>
+    <string name="Food2">Burger</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

@@ -18,13 +18,12 @@
             android:name=".MainActivity"
             android:label="@string/app_name">
 
-            <!--
-            intent-filter>
+            <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter
-            -->
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter>
         </activity>
 
         <!-- uses-library android:name="com.google.android.things" / -->
@@ -32,7 +31,7 @@
         <activity
             android:name=".NewLauncher"
             android:noHistory="true">
-            <intent-filter>
+            <!--intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -41,30 +40,12 @@
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.IOT_LAUNCHER" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter>
+
+            </intent-filter-->
         </activity>
 
         <!-- uses-library android:name="com.google.android.things" / -->
 
-        <activity
-            android:name=".EggStart"
-            android:noHistory="true">
-
-            <!--
-            intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.IOT_LAUNCHER" />
-                <category android:name="android.intent.category.DEFAULT" />
-            </intent-filter
-            -->
-        </activity>
         <activity android:name=".GotRexDatabase" />
     </application>
 
