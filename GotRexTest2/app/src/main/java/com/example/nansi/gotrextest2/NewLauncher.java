@@ -3,6 +3,7 @@ package com.example.nansi.gotrextest2;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v7.app.AlertDialog;
 import android.view.KeyEvent;
@@ -39,7 +40,14 @@ public class NewLauncher extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         //if ไป intent หน้าอื่น
+        Cursor check = GotRexDatabase.checkDB();
+        check.moveToFirst();
+        if(check.getInt(0)!=0){
+            //How can I gooooooooooooo
+        }
+        else
         //else all down here ไม่มั่นใจว่าทั้งหมดนี่จริงๆ รึเปล่านะ แต่เดาว่างั้น
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_launcher);
@@ -51,27 +59,25 @@ public class NewLauncher extends Activity {
         gotRexDatabase.open();
 
         okButton.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View arg0) {
-                if (editText.getText().length() > 0) {
+                    public void onClick(View arg0) {
+               if (editText.getText().length() > 0) {
                     String Name = editText.getText().toString();
-                    editText.setText("");
+                     editText.setText("");
 
-                    gotRexDatabase.insertName(Name);
-                    Intent startGame = new Intent(NewLauncher.this, CrackEgg.class);
-                    startActivity(startGame);
-                } else {
-                    //String Name = "default name";
-                    //editText.setText("");
+                     gotRexDatabase.insertName(Name);
+                      Intent startGame = new Intent(NewLauncher.this, CrackEgg.class);
+                      startActivity(startGame);
+                       } else {
+                   //String Name = "default name";
+                   //editText.setText("");
 
-                    //gotRexDatabase.insertName(Name);
-                    Intent startGame = new Intent(NewLauncher.this, CrackEgg.class);
-                    startActivity(startGame);
+                   //gotRexDatabase.insertName(Name);
+                   Intent startGame = new Intent(NewLauncher.this, CrackEgg.class);
+                   startActivity(startGame);
                     /*new AlertDialog.Builder(mContext).setTitle("Error").setMessage("Please name your pet!")
-                        .setPositiveButton(" OK", null).show();*/
-            }
-            }
-
+                       .setPositiveButton(" OK", null).show();*/
+                    }
+                    }
         });
-
     }
 }

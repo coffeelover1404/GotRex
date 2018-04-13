@@ -21,7 +21,7 @@ public class GotRexDatabase extends Activity {
     private static final String COL_5 = "Happy";
     private static final String COL_6 = "Energy";
 
-    private SQLiteDatabase db;
+    private static SQLiteDatabase db;
     private final Context context;
     private gotRexDatabaseOpen dbHelper;
 
@@ -54,6 +54,9 @@ public class GotRexDatabase extends Activity {
         return db.insert(TABLE_NAME, null, newGotRexValues);
     }
 
+    public static Cursor checkDB(){
+        return db.rawQuery("SELECT COUNT(*) FROM "+DATABASE_NAME, null);
+    }
     public Cursor seePetInfo(){
         return db.query(TABLE_NAME, new String[] {COL_2},
                 null, null, null, null, null);
