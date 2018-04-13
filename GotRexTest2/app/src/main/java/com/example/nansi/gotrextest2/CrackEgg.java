@@ -2,8 +2,6 @@ package com.example.nansi.gotrextest2;
 
 import android.app.Activity;
 import android.os.Bundle;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
 
 /**
  * Skeleton of an Android Things activity.
@@ -24,12 +22,11 @@ import android.view.animation.AnimationUtils;
  *
  * @see <a href="https://github.com/androidthings/contrib-drivers#readme">https://github.com/androidthings/contrib-drivers#readme</a>
  */
-public class EggStart extends Activity {
+public class CrackEgg extends Activity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_egg_start);
-
+        setContentView(R.layout.activity_crack_egg);
     }
 }

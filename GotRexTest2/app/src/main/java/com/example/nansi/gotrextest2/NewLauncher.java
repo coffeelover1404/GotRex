@@ -57,13 +57,13 @@ public class NewLauncher extends Activity {
                     editText.setText("");
 
                     gotRexDatabase.insertName(Name);
-                    Intent startGame = new Intent(NewLauncher.this, EggStart.class);
+                    Intent startGame = new Intent(NewLauncher.this, CrackEgg.class);
                     startActivity(startGame);
                 } else {
 
                     new AlertDialog.Builder(mContext).setTitle("Error").setMessage("Please name your pet!")
-                            .setPositiveButton(" OK", null).show();
-                }
+                        .setPositiveButton(" OK", null).show();
+            }
             }
 
         });
