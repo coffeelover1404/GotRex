@@ -23,8 +23,8 @@
             android:id="@+id/editText"
             android:layout_width="250dp"
             android:layout_height="wrap_content"
+            android:layout_below="@+id/imageView3"
             android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
             android:ems="10"
             android:fontFamily="sans-serif-condensed"
             android:hint="@string/hintToPutName"
@@ -39,7 +39,6 @@
             android:layout_height="120dp"
             android:layout_below="@+id/editText"
             android:layout_centerHorizontal="true"
-            android:layout_marginTop="19dp"
             android:background="@android:drawable/radiobutton_off_background"
             android:backgroundTint="@android:color/holo_blue_dark"
             android:text="@string/buttonPutName"
@@ -50,11 +49,12 @@
 
         <ImageView
             android:id="@+id/imageView3"
-            android:layout_width="150dp"
-            android:layout_height="150dp"
-            android:layout_above="@+id/editText"
-            android:layout_centerHorizontal="true"
-            android:src="@mipmap/ic_launcher_foreground" />
+            android:layout_width="wrap_content"
+            android:layout_height="220dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginTop="26dp"
+            android:src="@drawable/logo" />
     </RelativeLayout>
 
 </android.support.constraint.ConstraintLayout>
