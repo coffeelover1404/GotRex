@@ -1,9 +1,9 @@
 <resources>
     <string name="app_name">GotRex</string>
-    <string name="title_home">Eat</string>
+    <string name="title_home">Home</string>
     <string name="title_eat">Eat</string>
     <string name="title_bath">Take a bath</string>
-    <string name="title_play">Play</string>
+    <string name="title_status">Status</string>
     <string name="title_sleep">Sleep</string>
     <string name="title_activity_named">Name</string>
 
