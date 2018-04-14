@@ -39,7 +39,7 @@ public class CrackEgg extends Activity {
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent eggWait = new Intent(CrackEgg.this, NewLauncher.class);
+                Intent eggWait = new Intent(CrackEgg.this, MainActivity.class);
                 startActivity(eggWait);
                 finish();
             }
