@@ -17,9 +17,9 @@
         android:title="@string/title_bath" />
 
     <item
-        android:id="@+id/navigation_play"
+        android:id="@+id/navigation_status"
         android:icon="@drawable/ic_action_play"
-        android:title="@string/title_play" />
+        android:title="@string/title_status" />
 
     <item
         android:id="@+id/navigation_sleep"

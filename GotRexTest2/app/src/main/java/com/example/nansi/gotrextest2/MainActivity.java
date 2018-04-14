@@ -35,13 +35,16 @@ public class MainActivity extends AppCompatActivity {
                     transaction.replace(R.id.content, new EatFragment()).commit();
                     return true;
                 case R.id.navigation_bath:
-                    mTextMessage.setText(R.string.title_bath);
+                    setTitle("Take a Bath");
+                    transaction.replace(R.id.content, new BathFragment()).commit();
                     return true;
-                case R.id.navigation_play:
-                    mTextMessage.setText(R.string.title_play);
+                case R.id.navigation_status:
+                    setTitle("Status");
+                    transaction.replace(R.id.content, new StatusFragment()).commit();
                     return true;
                 case R.id.navigation_sleep:
-                    mTextMessage.setText(R.string.title_sleep);
+                    setTitle("Sleep");
+                    transaction.replace(R.id.content, new SleepFragment()).commit();
                     return true;
             }
             return false;
