@@ -42,12 +42,13 @@ public class NewLauncher extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
 
         //if ไป intent หน้าอื่น
-        /*Cursor check = GotRexDatabase.checkDB();
+        Cursor check = GotRexDatabase.checkDB();
         check.moveToFirst();
         if(check.getInt(0)!=0){
-            //How can I gooooooooooooo
+            Intent continueGame = new Intent(NewLauncher.this, MainActivity.class);
+                      startActivity(continueGame);
         }
-        else*/
+        else
         //else all down here ไม่มั่นใจว่าทั้งหมดนี่จริงๆ รึเปล่านะ แต่เดาว่างั้น
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_launcher);
