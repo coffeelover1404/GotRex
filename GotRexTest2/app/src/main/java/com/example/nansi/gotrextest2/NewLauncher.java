@@ -42,6 +42,10 @@ public class NewLauncher extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
 
         //if ไป intent หน้าอื่น
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_new_launcher);
+        gotRexDatabase = new GotRexDatabase(this);
+        gotRexDatabase.open();
         boolean  check = gotRexDatabase.checkDB();
         if(check == false){
             Intent continueGame = new Intent(NewLauncher.this, MainActivity.class);
@@ -55,8 +59,8 @@ public class NewLauncher extends Activity {
         editText = findViewById(R.id.editText);
         okButton = findViewById(R.id.button);
 
-        gotRexDatabase = new GotRexDatabase(this);
-        gotRexDatabase.open();
+        //gotRexDatabase = new GotRexDatabase(this);
+        //gotRexDatabase.open();
 
         okButton.setOnClickListener(new View.OnClickListener() {
                     public void onClick(View arg0) {
