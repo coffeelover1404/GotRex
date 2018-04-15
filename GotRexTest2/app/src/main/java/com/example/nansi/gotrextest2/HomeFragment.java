@@ -24,7 +24,6 @@ public class HomeFragment extends Fragment {
         // Required empty public constructor
     }
 
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -38,22 +37,7 @@ public class HomeFragment extends Fragment {
         anim = (AnimationDrawable)imageView.getBackground();
         anim.start();
 
-        return inflater.inflate(R.layout.fragment_home, container, false);
-    }
-
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        //setContentView(R.layout.fragment_home);
-
-        /*imageView = (ImageView)getView().findViewById(R.id.imageEgg);
-        if(imageView == null) throw new AssertionError();
-        imageView.setBackgroundResource(R.drawable.animation_egg);
-
-        anim = (AnimationDrawable)imageView.getBackground();
-        anim.start();*/
-
-
+        return myGotRex;
     }
 
 }
