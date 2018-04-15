@@ -54,9 +54,7 @@ public class GotRexDatabase extends Activity {
         return db.insert(TABLE_NAME, null, newGotRexValues);
     }
 
-    public static Cursor checkDB(){
-        return db.rawQuery("SELECT COUNT(*) FROM "+DATABASE_NAME, null);
-    }
+
     public Cursor seePetInfo(){
         return db.query(TABLE_NAME, new String[] {COL_2},
                 null, null, null, null, null);
@@ -83,5 +81,17 @@ public class GotRexDatabase extends Activity {
 
         }
     }
+    ////// Check Empty Function/////////
+
+     public boolean checkDB(){
+         boolean empty = true;
+         Cursor cur = db.rawQuery("SELECT COUNT(*) FROM "+TABLE_NAME, null);
+         if (cur != null && cur.moveToFirst()) {
+             empty = (cur.getInt (0) == 0);
+         }
+         cur.close();
+         return empty;
+     }
+
     ////////////////////
 }

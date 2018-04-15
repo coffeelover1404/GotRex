@@ -42,9 +42,8 @@ public class NewLauncher extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
 
         //if ไป intent หน้าอื่น
-        Cursor check = GotRexDatabase.checkDB();
-        check.moveToFirst();
-        if(check.getInt(0)!=0){
+        boolean  check = gotRexDatabase.checkDB();
+        if(check == false){
             Intent continueGame = new Intent(NewLauncher.this, MainActivity.class);
                       startActivity(continueGame);
         }
