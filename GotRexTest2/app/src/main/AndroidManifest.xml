@@ -33,7 +33,7 @@
         <activity
             android:name=".NewLauncher"
             android:noHistory="true">
-            <intent-filter>
+            <!--intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -42,7 +42,7 @@
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.IOT_LAUNCHER" />
-            </intent-filter>
+            </intent-filter-->
         </activity>
 
         <!-- uses-library android:name="com.google.android.things" / -->
