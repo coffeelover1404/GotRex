@@ -57,6 +57,15 @@ public class GotRexDatabase extends Activity {
         newGotRexValues.put(COL_7,0);
         return db.insert(TABLE_NAME, null, newGotRexValues);
     }
+    public void updateEat(int check){
+        ContentValues newEat = new ContentValues();
+        if(check == 1){
+            newEat.put(COL_3, "(SELECT "+COL_3+" FROM "+ TABLE_NAME +" WHERE ID =1) + 20");
+        }
+        else newEat.put(COL_3, "(SELECT "+COL_3+" FROM "+ TABLE_NAME +" WHERE ID =1) + 30");
+
+        db.update(TABLE_NAME, newEat, "ID=1", null);
+    }
 
 
     public Cursor seePetInfo(){
@@ -83,7 +92,10 @@ public class GotRexDatabase extends Activity {
 
         @Override
         public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-
+            // Drop older table if existed
+            db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME);
+            // Create tables again
+            onCreate(db);
         }
     }
     ////// Check Empty Function/////////
