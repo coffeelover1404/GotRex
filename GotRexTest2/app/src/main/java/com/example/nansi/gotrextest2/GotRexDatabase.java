@@ -58,13 +58,38 @@ public class GotRexDatabase extends Activity {
         return db.insert(TABLE_NAME, null, newGotRexValues);
     }
     public void updateEat(int check){
+        String upEat ="SELECT "+COL_3+" FROM "+TABLE_NAME+" WHERE ID=1;";
         ContentValues newEat = new ContentValues();
         if(check == 1){
-            newEat.put(COL_3, "(SELECT "+COL_3+" FROM "+ TABLE_NAME +" WHERE ID =1) + 20");
+            newEat.put(COL_3, "upEat"+ 20);
+            Cursor curEat = db.rawQuery(upEat, null);
+            Double checkEat = Double.parseDouble(curEat.toString());
+            if(checkEat > 100){
+                newEat.put(COL_3,100);
+            }
         }
-        else newEat.put(COL_3, "(SELECT "+COL_3+" FROM "+ TABLE_NAME +" WHERE ID =1) + 30");
+        else {
+            newEat.put(COL_3, "upEat" + 30);
+            Cursor curEat = db.rawQuery(upEat, null);
+            Double checkEat = Double.parseDouble(curEat.toString());
+            if(checkEat > 100){
+                newEat.put(COL_3,100);
+            }
+        }
 
         db.update(TABLE_NAME, newEat, "ID=1", null);
+    }
+
+    public void updateBath(){
+        String upBath = "SELECT "+COL_4+" FROM "+TABLE_NAME+" WHERE ID=1;";
+        ContentValues newBath = new ContentValues();
+        newBath.put(COL_4, "upBath"+ 50);
+        Cursor curBath = db.rawQuery(upBath, null);
+        Double checkBath = Double.parseDouble(curBath.toString());
+        if(checkBath > 100){
+            newBath.put(COL_3,100);
+        }
+        db.update(TABLE_NAME, newBath, "ID=1", null);
     }
 
 
