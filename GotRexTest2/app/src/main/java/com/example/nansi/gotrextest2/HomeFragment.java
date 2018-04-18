@@ -77,6 +77,7 @@ public class HomeFragment extends Fragment {
     private void cancelTimer() {
         //imageView.setImageAlpha(255);
         // TODO: ลงดาต้าเบส
+
         value = 0;
         //imageView.setVisibility(View.VISIBLE);
         if (running) {
