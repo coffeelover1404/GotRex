@@ -20,6 +20,9 @@ public class GotRexDatabase extends Activity {
     private static final String COL_4 = "Clean";
     private static final String COL_5 = "Happy";
     private static final String COL_6 = "Energy";
+    private static final String COL_7 = "Bond";
+    private static final int MAXnormal = 100;
+    private static final int MAXbond = 500;
 
     private static SQLiteDatabase db;
     private final Context context;
@@ -51,6 +54,7 @@ public class GotRexDatabase extends Activity {
         newGotRexValues.put(COL_4,0);
         newGotRexValues.put(COL_5,0);
         newGotRexValues.put(COL_6,0);
+        newGotRexValues.put(COL_7,0);
         return db.insert(TABLE_NAME, null, newGotRexValues);
     }
 
