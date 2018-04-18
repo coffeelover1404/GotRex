@@ -20,6 +20,9 @@ public class GotRexDatabase extends Activity {
     private static final String COL_4 = "Clean";
     private static final String COL_5 = "Happy";
     private static final String COL_6 = "Energy";
+    private static final String COL_7 = "Bond";
+    private static final double MAXnormal = 100;
+    private static final double MAXbond = 500;
 
     private static SQLiteDatabase db;
     private final Context context;
@@ -51,6 +54,7 @@ public class GotRexDatabase extends Activity {
         newGotRexValues.put(COL_4,0);
         newGotRexValues.put(COL_5,0);
         newGotRexValues.put(COL_6,0);
+        newGotRexValues.put(COL_7,0);
         return db.insert(TABLE_NAME, null, newGotRexValues);
     }
 
@@ -65,7 +69,8 @@ public class GotRexDatabase extends Activity {
 
         private static final String CREATE_TABLE = " CREATE TABLE " +
                 TABLE_NAME + " (" + COL_1 + " INTEGER PRIMARY KEY AUTOINCREMENT, " + COL_2 + " TEXT NOT NULL, " + COL_3 +
-                " INTEGER NOT NULL, " + COL_4 + " INTEGER NOT NULL, " + COL_5 + " INTEGER NOT NULL, " + COL_6 + " INTEGER NOT NULL);";
+                " DOUBLE NOT NULL, " + COL_4 + " DOUBLE NOT NULL, " + COL_5 + " DOUBLE NOT NULL, "
+                + COL_6 + " DOUBLE NOT NULL, " + COL_7 + " DOUBLE NOT NULL);";
 
         public gotRexDatabaseOpen(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
             super(context, DATABASE_NAME, null, 1);

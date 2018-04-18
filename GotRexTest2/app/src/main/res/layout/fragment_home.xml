@@ -22,6 +22,12 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.466">
 
+        <TextView
+            android:id="@+id/touchID"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="TextView" />
+
         <ImageView
             android:id="@+id/imageBaby"
             android:layout_width="350dp"
