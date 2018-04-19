@@ -21,8 +21,10 @@ public class GotRexDatabase extends Activity {
     private static final String COL_5 = "Happy";
     private static final String COL_6 = "Energy";
     private static final String COL_7 = "Bond";
+    private static final String COL_8 = "Grow";
     private static final double MAXnormal = 100;
     private static final double MAXbond = 500;
+    private static final double MAXgrow = 50;
 
     private static SQLiteDatabase db;
     private final Context context;
@@ -50,11 +52,12 @@ public class GotRexDatabase extends Activity {
         ContentValues newGotRexValues = new ContentValues();
 
         newGotRexValues.put(COL_2, name);
-        newGotRexValues.put(COL_3,0);
-        newGotRexValues.put(COL_4,0);
-        newGotRexValues.put(COL_5,0);
-        newGotRexValues.put(COL_6,0);
-        newGotRexValues.put(COL_7,0);
+        newGotRexValues.put(COL_3,50);
+        newGotRexValues.put(COL_4,50);
+        newGotRexValues.put(COL_5,50);
+        newGotRexValues.put(COL_6,50);
+        newGotRexValues.put(COL_7,50);
+        newGotRexValues.put(COL_8,50);
         return db.insert(TABLE_NAME, null, newGotRexValues);
     }
     public void updateEat(int check){
@@ -63,17 +66,20 @@ public class GotRexDatabase extends Activity {
         if(check == 1){
             newEat.put(COL_3, "upEat"+ 20);
             Cursor curEat = db.rawQuery(upEat, null);
+            curEat.moveToFirst();
             Double checkEat = Double.parseDouble(curEat.toString());
-            if(checkEat > 100){
-                newEat.put(COL_3,100);
+            if(checkEat > MAXnormal){
+                newEat.put(COL_3,MAXnormal);
             }
         }
         else {
             newEat.put(COL_3, "upEat" + 30);
+
             Cursor curEat = db.rawQuery(upEat, null);
+            curEat.moveToFirst();
             Double checkEat = Double.parseDouble(curEat.toString());
-            if(checkEat > 100){
-                newEat.put(COL_3,100);
+            if(checkEat > MAXnormal){
+                newEat.put(COL_3,MAXnormal);
             }
         }
 
@@ -85,11 +91,52 @@ public class GotRexDatabase extends Activity {
         ContentValues newBath = new ContentValues();
         newBath.put(COL_4, "upBath"+ 50);
         Cursor curBath = db.rawQuery(upBath, null);
-        Double checkBath = Double.parseDouble(curBath.toString());
-        if(checkBath > 100){
-            newBath.put(COL_3,100);
+        curBath.moveToFirst();
+        double checkBath = Double.parseDouble(curBath.toString());
+        if(checkBath > MAXnormal){
+            newBath.put(COL_3,MAXnormal);
         }
         db.update(TABLE_NAME, newBath, "ID=1", null);
+    }
+    //////////////////Get Status////////////////////////////////
+    public int pullStatus(String bar){
+        int status;
+        if("hungry".equals(bar)){
+            Cursor cur = db.rawQuery("SELECT "+COL_3+" FROM "+TABLE_NAME+" WHERE ID =1", null);
+            cur.moveToFirst();
+            status = cur.getInt(0);
+            return status;
+        }
+        if("clean".equals(bar)){
+            Cursor cur = db.rawQuery("SELECT "+COL_4+" FROM "+TABLE_NAME+" WHERE ID =1", null);
+            cur.moveToFirst();
+            status = cur.getInt(0);
+            return status;
+        }
+        if("energy".equals(bar)){
+            Cursor cur = db.rawQuery("SELECT "+COL_6+" FROM "+TABLE_NAME+" WHERE ID =1", null);
+            cur.moveToFirst();
+            status = cur.getInt(0);
+            return status;
+        }
+        if("happy".equals(bar)){
+            Cursor cur = db.rawQuery("SELECT "+COL_5+" FROM "+TABLE_NAME+" WHERE ID =1", null);
+            cur.moveToFirst();
+            status = cur.getInt(0);
+            return status;
+        }
+        else{
+            Cursor cur = db.rawQuery("SELECT "+COL_8+" FROM "+TABLE_NAME+" WHERE ID =1", null);
+            cur.moveToFirst();
+            status = cur.getInt(0);
+            return status;
+        }
+    }
+    /////////////////Pull name to show to status page/////////////////////////////////////
+    public String pullName(){
+        Cursor cur = db.rawQuery("SELECT "+COL_2+" FROM "+TABLE_NAME+" WHERE ID =1", null);
+        cur.moveToFirst();
+        return cur.toString();
     }
 
 
@@ -104,7 +151,7 @@ public class GotRexDatabase extends Activity {
         private static final String CREATE_TABLE = " CREATE TABLE " +
                 TABLE_NAME + " (" + COL_1 + " INTEGER PRIMARY KEY AUTOINCREMENT, " + COL_2 + " TEXT NOT NULL, " + COL_3 +
                 " DOUBLE NOT NULL, " + COL_4 + " DOUBLE NOT NULL, " + COL_5 + " DOUBLE NOT NULL, "
-                + COL_6 + " DOUBLE NOT NULL, " + COL_7 + " DOUBLE NOT NULL);";
+                + COL_6 + " DOUBLE NOT NULL, " + COL_7 + " DOUBLE NOT NULL, "+COL_8+" DOUBLE NOT NULL);";
 
         public gotRexDatabaseOpen(Context context, String name, SQLiteDatabase.CursorFactory factory, int version) {
             super(context, DATABASE_NAME, null, 1);

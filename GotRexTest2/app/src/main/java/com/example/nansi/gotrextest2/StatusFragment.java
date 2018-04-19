@@ -1,6 +1,7 @@
 package com.example.nansi.gotrextest2;
 
 
+import android.database.Cursor;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
@@ -21,6 +22,7 @@ public class StatusFragment extends Fragment {
     ProgressBar energyBar;
     ProgressBar growthBar;
     TextView babyName;
+    private GotRexDatabase gotRexDatabase;
 
     public StatusFragment() {
         // Required empty public constructor
@@ -40,13 +42,15 @@ public class StatusFragment extends Fragment {
         babyName = statusPage.findViewById(R.id.BabyName);
 
         //////////////////////////////Connect database to call value////////////////////////////
+        gotRexDatabase = new GotRexDatabase(getActivity());
+        gotRexDatabase.open();
 
-        hungryBar.setProgress(50);
-        cleanBar.setProgress(50);
-        energyBar.setProgress(50);
-        happyBar.setProgress(50);
-        growthBar.setProgress(50);
-        //babyName.setText();
+        hungryBar.setProgress(gotRexDatabase.pullStatus("hungry"));
+        cleanBar.setProgress(gotRexDatabase.pullStatus("clean"));
+        energyBar.setProgress(gotRexDatabase.pullStatus("energy"));
+        happyBar.setProgress(gotRexDatabase.pullStatus("happy"));
+        growthBar.setProgress(gotRexDatabase.pullStatus("grow"));
+        babyName.setText(gotRexDatabase.pullName());
 
         return statusPage;
     }
