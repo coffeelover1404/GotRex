@@ -33,8 +33,8 @@ public class HomeFragment extends Fragment {
     TextView touchID;
     TextView check;
     AnimationDrawable anim;
+    private GotRexDatabase gotRexDatabase;
     double value = 0;
-
     public HomeFragment() {
         // Required empty public constructor
     }
@@ -84,7 +84,9 @@ public class HomeFragment extends Fragment {
     private void cancelTimer() {
         //imageView.setImageAlpha(255);
         // TODO: ลงดาต้าเบส
-
+        gotRexDatabase = new GotRexDatabase(getActivity());
+        gotRexDatabase.open();
+        gotRexDatabase.updateHappy(value);
         value = 0;
         //imageView.setVisibility(View.VISIBLE);
         if (running) {
