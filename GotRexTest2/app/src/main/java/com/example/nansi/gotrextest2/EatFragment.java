@@ -4,6 +4,7 @@ package com.example.nansi.gotrextest2;
 import android.content.ClipData;
 import android.graphics.drawable.AnimationDrawable;
 import android.media.Image;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.DragEvent;
@@ -50,8 +51,8 @@ public class EatFragment extends Fragment {
         food4.setOnLongClickListener(longClick);
         food5.setOnLongClickListener(longClick);
 
-        /*grex.setOnDragListener(dragListener);
-        tgg.setOnDragListener(dragListener);*/
+        grex.setOnDragListener(dragListener);
+        tgg.setOnDragListener(dragListener);
 
         return a;
     }
@@ -61,7 +62,12 @@ public class EatFragment extends Fragment {
         public boolean onLongClick(View v) {
             ClipData data = ClipData.newPlainText("","");
             View.DragShadowBuilder shadow = new View.DragShadowBuilder(v);
-            v.startDrag(data, shadow, v, 0);
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
+                tgg.setText("ma la");
+                v.startDragAndDrop(data, shadow, v, 0);
+            } else {
+                v.startDrag(data, shadow, v, 0);
+            }
             return true;
         }
     };
