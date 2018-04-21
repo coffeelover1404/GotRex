@@ -58,11 +58,11 @@ public class GotRexDatabase extends Activity {
         newGotRexValues.put(COL_4,10);
         newGotRexValues.put(COL_5,10);
         newGotRexValues.put(COL_6,10);
-        newGotRexValues.put(COL_7,10);
+        newGotRexValues.put(COL_7,0);
         newGotRexValues.put(COL_8,0);
         return db.insert(TABLE_NAME, null, newGotRexValues);
     }
-
+    ///////////////// Check Growth//////////////////////////////////
     public boolean checkGrow(){
         String grow = "SELECT " + COL_8 + " FROM " + TABLE_NAME + " WHERE ID=1;";//Grow
 
@@ -76,7 +76,7 @@ public class GotRexDatabase extends Activity {
         else
         return false;
     }
-
+    ///////////////////////////// Check Bond ( T-rex or Godzilla)/////////////////////////////
     public boolean checkBond(){
         String bond = "SELECT " + COL_7 + " FROM " + TABLE_NAME + " WHERE ID=1;";//Grow
 
@@ -89,6 +89,52 @@ public class GotRexDatabase extends Activity {
         }
         else
             return false;
+    }
+
+    ////////////// Reduce Status////////////////////////////////
+    public void reduceStatus(double time){
+        time = time * 10;
+        db.execSQL("UPDATE " + TABLE_NAME + " SET " + COL_3 + " = " + COL_3 + " -" + time + " WHERE ID=1");//Hungry
+        db.execSQL("UPDATE " + TABLE_NAME + " SET " + COL_4 + " = " + COL_4 + " -" + time + " WHERE ID=1");//Clean
+        db.execSQL("UPDATE " + TABLE_NAME + " SET " + COL_5 + " = " + COL_5 + " -" + time + " WHERE ID=1");//Happy
+        db.execSQL("UPDATE " + TABLE_NAME + " SET " + COL_6 + " = " + COL_6 + " -" + time + " WHERE ID=1");//Energy
+
+        String eat = "SELECT " + COL_3 + " FROM " + TABLE_NAME + " WHERE ID=1;";
+        String clean = "SELECT " + COL_4 + " FROM " + TABLE_NAME + " WHERE ID=1;";
+        String hap = "SELECT " + COL_5 + " FROM " + TABLE_NAME + " WHERE ID=1;";
+        String energy = "SELECT " + COL_6 + " FROM " + TABLE_NAME + " WHERE ID=1;";
+
+        ///////eat///////
+        Cursor curEat = db.rawQuery(eat, null);
+        curEat.moveToFirst();
+        double checkEat = curEat.getDouble(0);
+        if (checkEat < 0) {
+            db.execSQL("UPDATE " + TABLE_NAME + " SET " + COL_3 + " = 0 WHERE ID=1");
+        }
+
+        ///////clean///////
+        Cursor curClean = db.rawQuery(clean, null);
+        curClean.moveToFirst();
+        double checkClean = curClean.getDouble(0);
+        if (checkClean < 0) {
+            db.execSQL("UPDATE " + TABLE_NAME + " SET " + COL_4 + " = 0 WHERE ID=1");
+        }
+
+        ///////Happy///////
+        Cursor curHap = db.rawQuery(hap, null);
+        curHap.moveToFirst();
+        double checkHap = curHap.getDouble(0);
+        if (checkHap < 0) {
+            db.execSQL("UPDATE " + TABLE_NAME + " SET " + COL_5 + " = 0 WHERE ID=1");
+        }
+
+        ///////Energy///////
+        Cursor curEnergy = db.rawQuery(energy, null);
+        curEnergy.moveToFirst();
+        double checkEnergy = curEnergy.getDouble(0);
+        if (checkEnergy < 0) {
+            db.execSQL("UPDATE " + TABLE_NAME + " SET " + COL_6 + " = 0 WHERE ID=1");
+        }
     }
 
 
