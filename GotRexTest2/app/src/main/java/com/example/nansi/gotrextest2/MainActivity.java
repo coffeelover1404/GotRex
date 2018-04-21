@@ -96,7 +96,7 @@ public class MainActivity extends AppCompatActivity {
                 gotRexDatabase = new GotRexDatabase(this);
                 gotRexDatabase.open();
                 //TODO: send second to database to calculate
-                //gotRexDatabase.updateStatusDifference(sec);
+                gotRexDatabase.reduceStatus(sec);
 
             } catch (ParseException e) {
                 e.printStackTrace();
