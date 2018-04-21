@@ -22,6 +22,8 @@ public class EatFragment extends Fragment {
 
     ImageView imageView;
     AnimationDrawable anim;
+    int check=0;
+    ImageView food1, food2, food3, food4, food5;
 
     public EatFragment() {
         // Required empty public constructor
@@ -34,40 +36,36 @@ public class EatFragment extends Fragment {
 
         View myGotRex = inflater.inflate(R.layout.fragment_eat, container, false);
 
+        food1 = (ImageView) myGotRex.findViewById(R.id.food1);
+        food2 = (ImageView) myGotRex.findViewById(R.id.food2);
+        food3 = (ImageView) myGotRex.findViewById(R.id.food3);
+        food4 = (ImageView) myGotRex.findViewById(R.id.food4);
+        food5 = (ImageView) myGotRex.findViewById(R.id.food5);
+
         imageView = (ImageView)myGotRex.findViewById(R.id.babyEat);
         if(imageView == null) throw new AssertionError();
         imageView.setBackgroundResource(R.drawable.animation_eat);
 
         anim = (AnimationDrawable)imageView.getBackground();
         anim.start();
+
+        food1.setOnLongClickListener(myClick);
+        food2.setOnLongClickListener(myClick);
+        food3.setOnLongClickListener(myClick);
+        food4.setOnLongClickListener(myClick);
+        food5.setOnLongClickListener(myClick);
+        imageView.setOnDragListener(dragListener);
+
         return myGotRex;
     }
-/*
-        food1 = (ImageView) a.findViewById(R.id.food1);
-        food2 = (ImageView) a.findViewById(R.id.food2);
-        food3 = (ImageView) a.findViewById(R.id.food3);
-        food4 = (ImageView) a.findViewById(R.id.food4);
-        food5 = (ImageView) a.findViewById(R.id.food5);
-        grex = (ImageView) a.findViewById(R.id.eater);
-        tt = (TextView) a.findViewById(R.id.ttt);
 
-        food1.setOnLongClickListener(longClick);
-        food2.setOnLongClickListener(longClick);
-        food3.setOnLongClickListener(longClick);
-        food4.setOnLongClickListener(longClick);
-        food5.setOnLongClickListener(longClick);
-
-        grex.setOnDragListener(dragListener);
-        tgg.setOnDragListener(dragListener);
-*/
-
-   /* View.OnLongClickListener longClick = new View.OnLongClickListener() {
+   View.OnLongClickListener myClick = new View.OnLongClickListener() {
         @Override
         public boolean onLongClick(View v) {
             ClipData data = ClipData.newPlainText("","");
             View.DragShadowBuilder shadow = new View.DragShadowBuilder(v);
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-                tgg.setText("ma la");
+
                 v.startDragAndDrop(data, shadow, v, 0);
             } else {
                 v.startDrag(data, shadow, v, 0);
@@ -93,21 +91,18 @@ public class EatFragment extends Fragment {
 
                     final View view = (View) event.getLocalState();
 
-                    if (view.getId() == R.id.ttt) {
-                        tgg.setText("yey!");
-                        /*imageView = (ImageView) a.findViewById(R.id.eater);
+                    if (view.getId() == R.id.food1) {
+
                         if(imageView == null) throw new AssertionError();
-                        imageView.setBackgroundResource(R.drawable.animation_egg);
+                        imageView.setBackgroundResource(R.drawable.animation_chew);
 
                         anim = (AnimationDrawable)imageView.getBackground();
                         anim.start();
                     }
-
                     break;
             }
-
             return true;
         }
-    };*/
+    };
 
 }

@@ -1,12 +1,14 @@
 package com.example.nansi.gotrextest2;
 
 
+import android.content.Intent;
 import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -18,6 +20,8 @@ public class BathFragment extends Fragment {
 
     ImageView imageView;
     AnimationDrawable anim;
+    Button bathButt;
+    int check=0;
 
     public BathFragment() {
         // Required empty public constructor
@@ -31,12 +35,34 @@ public class BathFragment extends Fragment {
         View myGotRex = inflater.inflate(R.layout.fragment_bath, container, false);
 
         imageView = (ImageView)myGotRex.findViewById(R.id.babyBath);
+        bathButt = (Button) myGotRex.findViewById(R.id.bathButton);
+
         if(imageView == null) throw new AssertionError();
         imageView.setBackgroundResource(R.drawable.animation_bath);
 
         anim = (AnimationDrawable)imageView.getBackground();
         anim.start();
+
+        bathButt.setOnClickListener(myClick);
+
         return myGotRex;
     }
+
+    View.OnClickListener myClick = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            if(imageView == null) throw new AssertionError();
+            if(check==0) {
+                imageView.setBackgroundResource(R.drawable.animation_rinse);
+                check = 1;
+            } else {
+                imageView.setBackgroundResource(R.drawable.animation_bath);
+                check = 0;
+            }
+
+            anim = (AnimationDrawable)imageView.getBackground();
+            anim.start();
+        }
+    };
 
 }
