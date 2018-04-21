@@ -90,11 +90,12 @@ public class MainActivity extends AppCompatActivity {
                 long Secs = (int) (mills / 1000) % 60;*/
                 //String diff = Hours + ":" + Mins + ":" + Secs;
 
-                // updated value every1 second
+                // get second
                 double sec = mills/1000;
                 mTextMessage.setText(String.valueOf(sec));
                 gotRexDatabase = new GotRexDatabase(this);
                 gotRexDatabase.open();
+                //TODO: send second to database to calculate
                 //gotRexDatabase.updateStatusDifference(sec);
 
             } catch (ParseException e) {
