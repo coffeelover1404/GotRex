@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/bg2"
     tools:context=".SleepFragment">
 
     <!-- TODO: Update blank fragment layout -->
@@ -18,8 +19,10 @@
             android:id="@+id/babySleep"
             android:layout_width="350dp"
             android:layout_height="195dp"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginBottom="139dp"
+            android:layout_marginEnd="9dp"
             android:background="#3498db" />
     </RelativeLayout>
 
