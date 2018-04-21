@@ -56,7 +56,7 @@ public class HomeFragment extends Fragment {
             if (naJaTuuYuu && !running) {
                 running = true;
                 timer = new Timer();
-                value+=0.01;
+                value+=5;
                 // After 500ms of somewhat tuuing, we consider it actual tuuing
                 timer.schedule(new TimerTask() {
                     @Override

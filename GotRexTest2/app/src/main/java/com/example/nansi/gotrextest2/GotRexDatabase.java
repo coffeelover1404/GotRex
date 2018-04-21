@@ -73,7 +73,8 @@ public class GotRexDatabase extends Activity {
     public void updateHappy(double add){
         //update Query//
         db.execSQL("UPDATE "+TABLE_NAME+" SET "+COL_5+" = "+COL_5+" +"+ add +" WHERE ID=1");
-        //Prepare query for check with MAx//
+        db.execSQL("UPDATE "+TABLE_NAME+" SET "+COL_7+" = "+COL_7+" +"+ add +" WHERE ID=1");
+        //Prepare query for check with MAX//
         String upHap = "SELECT "+COL_5+" FROM "+TABLE_NAME+" WHERE ID=1;";
         ContentValues newSleep = new ContentValues();
         Cursor curHap = db.rawQuery(upHap, null);
@@ -194,10 +195,12 @@ public class GotRexDatabase extends Activity {
         String data = cur.getString(columnIndex);*/
         Cursor name = db.query(TABLE_NAME, new String[] {COL_2},
                 null, null, null, null, null);
-        name.moveToFirst();
+        /*name.moveToFirst();
         int columnIndex = name.getColumnIndex(COL_2);
-        String data = name.getString(columnIndex);
-        return name.toString();
+        String data = name.getString(columnIndex);*/
+        name.moveToFirst() ;
+        String str = name.getString(name.getColumnIndex(COL_2));
+        return str;
     }
 
 
