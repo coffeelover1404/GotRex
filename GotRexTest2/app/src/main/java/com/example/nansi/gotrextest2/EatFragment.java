@@ -20,22 +20,29 @@ import android.widget.TextView;
  */
 public class EatFragment extends Fragment {
 
+    ImageView imageView;
+    AnimationDrawable anim;
 
     public EatFragment() {
         // Required empty public constructor
     }
 
-    ImageView food1, food2, food3, food4, food5, grex;
-    TextView tt, tgg;
-    View a;
-    ImageView imageView;
-    AnimationDrawable anim;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        a = inflater.inflate(R.layout.fragment_eat, container, false);
 
+        View myGotRex = inflater.inflate(R.layout.fragment_eat, container, false);
+
+        imageView = (ImageView)myGotRex.findViewById(R.id.babyEat);
+        if(imageView == null) throw new AssertionError();
+        imageView.setBackgroundResource(R.drawable.animation_eat);
+
+        anim = (AnimationDrawable)imageView.getBackground();
+        anim.start();
+        return myGotRex;
+    }
+/*
         food1 = (ImageView) a.findViewById(R.id.food1);
         food2 = (ImageView) a.findViewById(R.id.food2);
         food3 = (ImageView) a.findViewById(R.id.food3);
@@ -43,7 +50,6 @@ public class EatFragment extends Fragment {
         food5 = (ImageView) a.findViewById(R.id.food5);
         grex = (ImageView) a.findViewById(R.id.eater);
         tt = (TextView) a.findViewById(R.id.ttt);
-        tgg = (TextView) a.findViewById(R.id.tgg);
 
         food1.setOnLongClickListener(longClick);
         food2.setOnLongClickListener(longClick);
@@ -53,11 +59,9 @@ public class EatFragment extends Fragment {
 
         grex.setOnDragListener(dragListener);
         tgg.setOnDragListener(dragListener);
+*/
 
-        return a;
-    }
-
-    View.OnLongClickListener longClick = new View.OnLongClickListener() {
+   /* View.OnLongClickListener longClick = new View.OnLongClickListener() {
         @Override
         public boolean onLongClick(View v) {
             ClipData data = ClipData.newPlainText("","");
@@ -89,14 +93,14 @@ public class EatFragment extends Fragment {
 
                     final View view = (View) event.getLocalState();
 
-                    if (view.getId() == R.id.tgg) {
+                    if (view.getId() == R.id.ttt) {
                         tgg.setText("yey!");
                         /*imageView = (ImageView) a.findViewById(R.id.eater);
                         if(imageView == null) throw new AssertionError();
                         imageView.setBackgroundResource(R.drawable.animation_egg);
 
                         anim = (AnimationDrawable)imageView.getBackground();
-                        anim.start();*/
+                        anim.start();
                     }
 
                     break;
@@ -104,6 +108,6 @@ public class EatFragment extends Fragment {
 
             return true;
         }
-    };
+    };*/
 
 }
