@@ -24,7 +24,7 @@ public class GotRexDatabase extends Activity {
     private static final String COL_8 = "Grow";
     private static final double MAXnormal = 100;
     private static final double MAXbond = 300;
-    private static final double MAXgrow = 50;
+    private static final double MAXgrow = 100;
 
     private static SQLiteDatabase db;
     private final Context context;
@@ -75,6 +75,20 @@ public class GotRexDatabase extends Activity {
         }
         else
         return false;
+    }
+
+    public boolean checkBond(){
+        String bond = "SELECT " + COL_7 + " FROM " + TABLE_NAME + " WHERE ID=1;";//Grow
+
+        Cursor curBond = db.rawQuery(bond, null);//Grow
+        curBond.moveToFirst();
+        double checkBond = curBond.getDouble(0);
+
+        if (checkBond >= 200) {
+            return true;
+        }
+        else
+            return false;
     }
 
 
