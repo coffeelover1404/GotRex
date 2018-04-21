@@ -42,42 +42,47 @@ public class NewLauncher extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
 
         //if ไป intent หน้าอื่น
-        /*Cursor check = GotRexDatabase.checkDB();
-        check.moveToFirst();
-        if(check.getInt(0)!=0){
-            //How can I gooooooooooooo
-        }
-        else*/
-        //else all down here ไม่มั่นใจว่าทั้งหมดนี่จริงๆ รึเปล่านะ แต่เดาว่างั้น
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_launcher);
-
-        editText = findViewById(R.id.editText);
-        okButton = findViewById(R.id.button);
-
         gotRexDatabase = new GotRexDatabase(this);
         gotRexDatabase.open();
+        boolean  check = gotRexDatabase.checkDB();
+        if(check == false){
+            Intent continueGame = new Intent(NewLauncher.this, MainActivity.class);
+                      startActivity(continueGame);
+        }
+        else {
+            //else all down here ไม่มั่นใจว่าทั้งหมดนี่จริงๆ รึเปล่านะ แต่เดาว่างั้น
+            super.onCreate(savedInstanceState);
+            setContentView(R.layout.activity_new_launcher);
 
-        okButton.setOnClickListener(new View.OnClickListener() {
-                    public void onClick(View arg0) {
-               if (editText.getText().length() > 0) {
-                    String Name = editText.getText().toString();
-                     editText.setText("");
+            editText = findViewById(R.id.editText);
+            okButton = findViewById(R.id.button);
 
-                     gotRexDatabase.insertName(Name);
-                      Intent startGame = new Intent(NewLauncher.this, CrackEgg.class);
-                      startActivity(startGame);
-                       } else {
-                   //String Name = "default name";
-                   //editText.setText("");
+            //gotRexDatabase = new GotRexDatabase(this);
+            //gotRexDatabase.open();
 
-                   //gotRexDatabase.insertName(Name);
-                   Intent startGame = new Intent(NewLauncher.this, CrackEgg.class);
-                   startActivity(startGame);
+            okButton.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View arg0) {
+                    if (editText.getText().length() > 0) {
+                        String Name = editText.getText().toString();
+                        editText.setText("");
+
+                        gotRexDatabase.insertName(Name);
+                        Intent startGame = new Intent(NewLauncher.this, CrackEgg.class);
+                        startActivity(startGame);
+                    } else {
+                        //String Name = "default name";
+                        //editText.setText("");
+
+                        //gotRexDatabase.insertName(Name);
+                        Intent startGame = new Intent(NewLauncher.this, CrackEgg.class);
+                        startActivity(startGame);
                     /*new AlertDialog.Builder(mContext).setTitle("Error").setMessage("Please name your pet!")
                        .setPositiveButton(" OK", null).show();*/
                     }
-                    }
-        });
+                }
+            });
+        }
     }
 }
