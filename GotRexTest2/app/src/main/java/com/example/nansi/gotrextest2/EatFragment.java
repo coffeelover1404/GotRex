@@ -20,21 +20,28 @@ import android.widget.TextView;
  */
 public class EatFragment extends Fragment {
 
+    ImageView imageView;
+    AnimationDrawable anim;
 
     public EatFragment() {
         // Required empty public constructor
     }
 
-    ImageView food1, food2, food3, food4, food5, grex;
-    TextView tt, tgg;
-    View a;
-    ImageView imageView;
-    AnimationDrawable anim;
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        a = inflater.inflate(R.layout.fragment_eat, container, false);
+
+        View myGotRex = inflater.inflate(R.layout.fragment_eat, container, false);
+
+        imageView = (ImageView)myGotRex.findViewById(R.id.babyEat);
+        if(imageView == null) throw new AssertionError();
+        imageView.setBackgroundResource(R.drawable.animation_eat);
+
+        anim = (AnimationDrawable)imageView.getBackground();
+        anim.start();
+        return myGotRex;
+    }
 /*
         food1 = (ImageView) a.findViewById(R.id.food1);
         food2 = (ImageView) a.findViewById(R.id.food2);
@@ -53,8 +60,6 @@ public class EatFragment extends Fragment {
         grex.setOnDragListener(dragListener);
         tgg.setOnDragListener(dragListener);
 */
-        return a;
-    }
 
    /* View.OnLongClickListener longClick = new View.OnLongClickListener() {
         @Override
