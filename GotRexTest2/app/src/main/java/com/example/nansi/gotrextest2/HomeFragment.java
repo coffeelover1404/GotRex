@@ -42,6 +42,7 @@ public class HomeFragment extends Fragment {
     Rect imageViewRect;
     Timer timer;
     private boolean running = false;
+
     private final View.OnTouchListener mTouchListener = new View.OnTouchListener() {
         @Override
         public boolean onTouch(View view, MotionEvent motionEvent) {
@@ -73,10 +74,19 @@ public class HomeFragment extends Fragment {
                     }
                 }, 500);
             }
+
+            if(imageView == null) throw new AssertionError();
+            imageView.setBackgroundResource(R.drawable.animation_happy);
+            anim = (AnimationDrawable)imageView.getBackground();
+            anim.start();
+
             if (!naJaTuuYuu) {
                 cancelTimer();
             }
             touchID.setText(String.format("(%d, %d) %s %f", x, y, naJaTuuYuu, value));
+
+
+
             return true;
         }
     };
@@ -88,6 +98,12 @@ public class HomeFragment extends Fragment {
         gotRexDatabase.open();
         gotRexDatabase.updateHappy(value);
         value = 0;
+
+        if(imageView == null) throw new AssertionError();
+        imageView.setBackgroundResource(R.drawable.animation_baby);
+        anim = (AnimationDrawable)imageView.getBackground();
+        anim.start();
+
         //imageView.setVisibility(View.VISIBLE);
         if (running) {
             timer.cancel();

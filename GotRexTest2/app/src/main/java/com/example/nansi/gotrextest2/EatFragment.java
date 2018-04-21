@@ -2,10 +2,12 @@ package com.example.nansi.gotrextest2;
 
 
 import android.content.ClipData;
+import android.content.Intent;
 import android.graphics.drawable.AnimationDrawable;
 import android.media.Image;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.v4.app.Fragment;
 import android.view.DragEvent;
 import android.view.LayoutInflater;
@@ -77,28 +79,29 @@ public class EatFragment extends Fragment {
 
    View.OnDragListener dragListener = new View.OnDragListener() {
         @Override
+
         public boolean onDrag(View v, DragEvent event) {
 
             int dragEvent = event.getAction();
 
             switch(dragEvent){
                 case DragEvent.ACTION_DRAG_ENTERED:
-
+                    if(imageView == null) throw new AssertionError();
+                    imageView.setBackgroundResource(R.drawable.eat5);
                     break;
                 case DragEvent.ACTION_DRAG_EXITED:
+                    if(imageView == null) throw new AssertionError();
+                    imageView.setBackgroundResource(R.drawable.animation_eat);
                     break;
                 case DragEvent.ACTION_DROP:
 
                     final View view = (View) event.getLocalState();
 
-                    if (view.getId() == R.id.food1) {
+                    if(imageView == null) throw new AssertionError();
+                    imageView.setBackgroundResource(R.drawable.animation_chew);
+                    anim = (AnimationDrawable)imageView.getBackground();
+                    anim.start();
 
-                        if(imageView == null) throw new AssertionError();
-                        imageView.setBackgroundResource(R.drawable.animation_chew);
-
-                        anim = (AnimationDrawable)imageView.getBackground();
-                        anim.start();
-                    }
                     break;
             }
             return true;
