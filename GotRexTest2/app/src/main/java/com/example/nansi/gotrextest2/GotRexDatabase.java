@@ -62,6 +62,12 @@ public class GotRexDatabase extends Activity {
         newGotRexValues.put(COL_8,0);
         return db.insert(TABLE_NAME, null, newGotRexValues);
     }
+
+    ///////////////////Delete Got-Rex///////////////////////////////
+    public void deleteGotRex(){
+        db.execSQL("DROP TABLE IF EXISTS "+TABLE_NAME);
+    }
+    
     ///////////////// Check Growth//////////////////////////////////
     public boolean checkGrow(){
         String grow = "SELECT " + COL_8 + " FROM " + TABLE_NAME + " WHERE ID=1;";//Grow
