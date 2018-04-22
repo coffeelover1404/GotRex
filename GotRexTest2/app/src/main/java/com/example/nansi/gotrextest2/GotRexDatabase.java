@@ -180,32 +180,19 @@ public class GotRexDatabase extends Activity {
 
     ////////////////////Update Hungry Status/////////////////////////////////
 
-    public void updateEat(int check){
+    public void updateEat(int score){
         String upEat ="SELECT "+COL_3+" FROM "+TABLE_NAME+" WHERE ID=1;";
         db.execSQL("UPDATE "+TABLE_NAME+" SET "+COL_8+" = "+COL_8+" +5 WHERE ID=1");
 
-        if(check == 1){
-            db.execSQL("UPDATE "+TABLE_NAME+" SET "+COL_3+" = "+COL_3+" +30  WHERE ID=1");
+        db.execSQL("UPDATE "+TABLE_NAME+" SET "+COL_3+" = "+COL_3+" + " +score +" WHERE ID=1");
 
-            Cursor curEat = db.rawQuery(upEat, null);
-            curEat.moveToFirst();
-            Double checkEat = curEat.getDouble(0);
+        Cursor curEat = db.rawQuery(upEat, null);
+        curEat.moveToFirst();
+        Double checkEat = curEat.getDouble(0);
 
-            if(checkEat > MAXnormal){
-                db.execSQL("UPDATE "+TABLE_NAME+" SET "+COL_3+" = 100  WHERE ID=1");
-            }
-        }
-        else {
-            db.execSQL("UPDATE "+TABLE_NAME+" SET "+COL_3+" = "+COL_3+" +15  WHERE ID=1");
+        if(checkEat > MAXnormal)
+            db.execSQL("UPDATE "+TABLE_NAME+" SET "+COL_3+" = 100  WHERE ID=1");
 
-            Cursor curEat = db.rawQuery(upEat, null);
-            curEat.moveToFirst();
-            Double checkEat = curEat.getDouble(0);
-
-            if(checkEat > MAXnormal){
-                db.execSQL("UPDATE "+TABLE_NAME+" SET "+COL_3+" = 100  WHERE ID=1");
-            }
-        }
     }
 
 
