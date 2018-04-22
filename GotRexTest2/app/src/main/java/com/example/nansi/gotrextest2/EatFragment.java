@@ -26,6 +26,7 @@ public class EatFragment extends Fragment {
     AnimationDrawable anim;
     int check=0;
     ImageView food1, food2, food3, food4, food5;
+    private GotRexDatabase gotRexDatabase;
 
     public EatFragment() {
         // Required empty public constructor
@@ -83,6 +84,7 @@ public class EatFragment extends Fragment {
         public boolean onDrag(View v, DragEvent event) {
 
             int dragEvent = event.getAction();
+            int numFood = 0;
 
             switch(dragEvent){
                 case DragEvent.ACTION_DRAG_ENTERED:
@@ -101,6 +103,18 @@ public class EatFragment extends Fragment {
                     imageView.setBackgroundResource(R.drawable.animation_chew);
                     anim = (AnimationDrawable)imageView.getBackground();
                     anim.start();
+
+                    if(view.getId() == R.id.food1) numFood = 1;
+                    else if(view.getId() == R.id.food2) numFood = 2;
+                    else if(view.getId() == R.id.food3) numFood = 3;
+                    else if(view.getId() == R.id.food4) numFood = 4;
+                    else if(view.getId() == R.id.food1) numFood = 5;
+
+                    if(numFood!=0) {
+                        gotRexDatabase = new GotRexDatabase(getActivity());
+                        gotRexDatabase.open();
+                        gotRexDatabase.updateEat(numFood);
+                    }
 
                     break;
             }

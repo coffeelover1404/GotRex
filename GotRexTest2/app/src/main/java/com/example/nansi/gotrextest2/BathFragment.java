@@ -22,6 +22,7 @@ public class BathFragment extends Fragment {
     AnimationDrawable anim;
     Button bathButt;
     int check=0;
+    private GotRexDatabase gotRexDatabase;
 
     public BathFragment() {
         // Required empty public constructor
@@ -55,6 +56,9 @@ public class BathFragment extends Fragment {
             if(check==0) {
                 imageView.setBackgroundResource(R.drawable.animation_rinse);
                 check = 1;
+                gotRexDatabase = new GotRexDatabase(getActivity());
+                gotRexDatabase.open();
+                gotRexDatabase.updateBath();
             } else {
                 imageView.setBackgroundResource(R.drawable.animation_bath);
                 check = 0;
