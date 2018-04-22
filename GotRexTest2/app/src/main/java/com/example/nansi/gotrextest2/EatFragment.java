@@ -2,7 +2,6 @@ package com.example.nansi.gotrextest2;
 
 
 import android.content.ClipData;
-import android.content.Intent;
 import android.graphics.drawable.AnimationDrawable;
 import android.media.Image;
 import android.os.Build;
@@ -14,7 +13,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.TextView;
 
 
 /**
@@ -114,6 +112,8 @@ public class EatFragment extends Fragment {
                         gotRexDatabase = new GotRexDatabase(getActivity());
                         gotRexDatabase.open();
                         gotRexDatabase.updateEat(numFood);
+                        boolean check = gotRexDatabase.checkGrow();
+                        CheckGrowth.getGrowth(check, getActivity());
                     }
 
                     break;
@@ -121,5 +121,7 @@ public class EatFragment extends Fragment {
             return true;
         }
     };
+
+
 
 }

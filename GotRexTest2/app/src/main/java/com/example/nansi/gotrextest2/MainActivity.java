@@ -136,6 +136,8 @@ public class MainActivity extends AppCompatActivity {
         String myDate = sdf.format(systemDate); //build up string keep current time
         saveLastAccess(myDate);
 
+        gotRexDatabase.close();
+
     }
 
     public void saveLastAccess(String lastTime){

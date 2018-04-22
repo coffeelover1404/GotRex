@@ -1,6 +1,7 @@
 package com.example.nansi.gotrextest2;
 
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
@@ -59,6 +60,9 @@ public class BathFragment extends Fragment {
                 gotRexDatabase = new GotRexDatabase(getActivity());
                 gotRexDatabase.open();
                 gotRexDatabase.updateBath();
+                boolean check = gotRexDatabase.checkGrow();
+                CheckGrowth.getGrowth(check, getActivity());
+
             } else {
                 imageView.setBackgroundResource(R.drawable.animation_bath);
                 check = 0;

@@ -33,7 +33,9 @@
         <activity
             android:name=".NewLauncher"
             android:noHistory="true">
-            <!--intent-filter>
+
+            <!--
+            intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
@@ -42,14 +44,15 @@
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.IOT_LAUNCHER" />
-            </intent-filter-->
+            </intent-filter
+            -->
         </activity>
 
         <!-- uses-library android:name="com.google.android.things" / -->
 
         <activity android:name=".GotRexDatabase" />
 
-        <!--uses-library android:name="com.google.android.things" /-->
+        <!-- uses-library android:name="com.google.android.things" / -->
 
         <activity android:name=".WelcomeScreen">
             <intent-filter>
@@ -64,11 +67,23 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
+        <activity android:name=".CrackEgg"></activity>
 
+        <!--uses-library android:name="com.google.android.things" /-->
 
-        <activity android:name=".CrackEgg"> </activity>
+        <activity android:name=".GotRexAdult">
+            <!--intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.IOT_LAUNCHER" />
+                <category android:name="android.intent.category.DEFAULT" />
+            </intent-filter-->
+        </activity>
     </application>
 
 </manifest>
