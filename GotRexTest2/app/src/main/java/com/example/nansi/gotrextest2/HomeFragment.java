@@ -1,11 +1,14 @@
 package com.example.nansi.gotrextest2;
 
 
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Rect;
 import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
+import android.support.v7.app.AlertDialog;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
@@ -30,10 +33,9 @@ import java.util.TimerTask;
 public class HomeFragment extends Fragment {
 
     ImageView imageView;
-    TextView touchID;
-    TextView check;
     AnimationDrawable anim;
     private GotRexDatabase gotRexDatabase;
+    //CheckGrowth checkGrowth;
     double value = 0;
     public HomeFragment() {
         // Required empty public constructor
@@ -83,33 +85,10 @@ public class HomeFragment extends Fragment {
             if (!naJaTuuYuu) {
                 cancelTimer();
             }
-            touchID.setText(String.format("(%d, %d) %s %f", x, y, naJaTuuYuu, value));
-
-
-
+            //touchID.setText(String.format("(%d, %d) %s %f", x, y, naJaTuuYuu, value));
             return true;
         }
     };
-
-    private void cancelTimer() {
-        //imageView.setImageAlpha(255);
-        // TODO: ลงดาต้าเบส
-        gotRexDatabase = new GotRexDatabase(getActivity());
-        gotRexDatabase.open();
-        gotRexDatabase.updateHappy(value);
-        value = 0;
-
-        if(imageView == null) throw new AssertionError();
-        imageView.setBackgroundResource(R.drawable.animation_baby);
-        anim = (AnimationDrawable)imageView.getBackground();
-        anim.start();
-
-        //imageView.setVisibility(View.VISIBLE);
-        if (running) {
-            timer.cancel();
-            running = false;
-        }
-    }
 
     private boolean withinRect(int x, int y) {
         return imageViewRect.contains(x, y);
@@ -120,7 +99,7 @@ public class HomeFragment extends Fragment {
                              Bundle savedInstanceState) {
 
         View myGotRex = inflater.inflate(R.layout.fragment_home, container, false);
-        touchID = myGotRex.findViewById(R.id.touchID);
+        //touchID = myGotRex.findViewById(R.id.touchID);
 
         imageView = (ImageView)myGotRex.findViewById(R.id.imageBaby);
         if(imageView == null) throw new AssertionError();
@@ -143,6 +122,29 @@ public class HomeFragment extends Fragment {
         });
 
         return myGotRex;
+    }
+
+    private void cancelTimer() {
+        //imageView.setImageAlpha(255);
+        // TODO: ลงดาต้าเบส
+        gotRexDatabase = new GotRexDatabase(getActivity());
+        gotRexDatabase.open();
+        gotRexDatabase.updateHappy(value);
+        boolean check = gotRexDatabase.checkGrow();
+        CheckGrowth.getGrowth(check, getActivity());
+
+        value = 0;
+
+        if(imageView == null) throw new AssertionError();
+        imageView.setBackgroundResource(R.drawable.animation_baby);
+        anim = (AnimationDrawable)imageView.getBackground();
+        anim.start();
+
+        //imageView.setVisibility(View.VISIBLE);
+        if (running) {
+            timer.cancel();
+            running = false;
+        }
     }
 
 }
