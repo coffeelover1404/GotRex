@@ -2,12 +2,14 @@ package com.example.nansi.gotrextest2;
 
 //import android.app.FragmentTransaction;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 import android.view.View;
@@ -66,11 +68,11 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         String lastAccess = getLastAccess();
 
-        mTextMessage = (TextView) findViewById(R.id.mTextMessage);
-        text = (TextView) findViewById(R.id.text);
+        //mTextMessage = (TextView) findViewById(R.id.mTextMessage);
+        //text = (TextView) findViewById(R.id.text);
         if(lastAccess != "") //have used before
         {
-            text.setText("Hello have used this app before" + lastAccess);
+            //text.setText("Hello have used this app before" + lastAccess);
             try {
                 double newScore = 0;
                 SimpleDateFormat sdf = new SimpleDateFormat("hh:mm:ss");
@@ -92,7 +94,7 @@ public class MainActivity extends AppCompatActivity {
 
                 // get second
                 double sec = mills/1000;
-                mTextMessage.setText(String.valueOf(sec));
+                //mTextMessage.setText(String.valueOf(sec));
                 gotRexDatabase = new GotRexDatabase(this);
                 gotRexDatabase.open();
                 //TODO: send second to database to calculate
@@ -101,6 +103,18 @@ public class MainActivity extends AppCompatActivity {
             } catch (ParseException e) {
                 e.printStackTrace();
             }
+        }
+        else{
+            AlertDialog.Builder mBuilder = new AlertDialog.Builder(MainActivity.this);
+            mBuilder.setMessage("Here is your new baby, please take care him to be a good adult!").setCancelable(false).setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+                    dialog.cancel();
+                }
+            });
+            AlertDialog alert = mBuilder.create();
+            alert.setTitle("Welcome to GotRex");
+            alert.show();
         }
 
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);

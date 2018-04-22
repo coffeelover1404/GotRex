@@ -70,7 +70,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="Hungry"
-                    android:textColor="@color/colorPrimary"
+                    android:textColor="@color/colorAccent"
                     android:textSize="20sp"
                     android:textStyle="bold" />
 
@@ -95,7 +95,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="Clean"
-                    android:textColor="@color/colorPrimary"
+                    android:textColor="@color/colorAccent"
                     android:textSize="20sp"
                     android:textStyle="bold" />
 
@@ -120,7 +120,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="Energy"
-                    android:textColor="@color/colorPrimary"
+                    android:textColor="@color/colorAccent"
                     android:textSize="20sp"
                     android:textStyle="bold" />
 
@@ -145,7 +145,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="Happy"
-                    android:textColor="@color/colorPrimary"
+                    android:textColor="@color/colorAccent"
                     android:textSize="20sp"
                     android:textStyle="bold" />
 
@@ -170,7 +170,7 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:text="Growth"
-                    android:textColor="@color/colorPrimary"
+                    android:textColor="@color/colorAccent"
                     android:textSize="20sp"
                     android:textStyle="bold" />
 
@@ -185,7 +185,7 @@
         </LinearLayout>
 
         <Button
-            android:id="@+id/button3"
+            android:id="@+id/deleteBtn"
             android:layout_width="140dp"
             android:layout_height="80dp"
             android:layout_alignParentBottom="true"
