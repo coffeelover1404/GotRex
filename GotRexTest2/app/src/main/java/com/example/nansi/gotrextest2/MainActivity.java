@@ -70,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
 
         //mTextMessage = (TextView) findViewById(R.id.mTextMessage);
         //text = (TextView) findViewById(R.id.text);
-        if(lastAccess != "") //have used before
+        if(lastAccess.equals("") != false) //have used before
         {
             //text.setText("Hello have used this app before" + lastAccess);
             try {
