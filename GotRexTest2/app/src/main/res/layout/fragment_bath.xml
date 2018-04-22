@@ -33,6 +33,10 @@
             android:layout_alignParentEnd="true"
             android:layout_marginBottom="16dp"
             android:background="@android:drawable/presence_online"
-            android:backgroundTint="@android:color/holo_blue_bright" />
+            android:backgroundTint="@android:color/holo_blue_bright"
+            android:text="Open/Close"
+            android:textColor="@android:color/background_light"
+            android:textSize="18sp"
+            android:textStyle="bold" />
     </RelativeLayout>
 </FrameLayout>
