@@ -66,6 +66,7 @@ public class HomeFragment extends Fragment {
                     }
                 }, 500);
             }
+            idea.setText("Ha hi hi hi...pami");
 
             if(imageView == null) throw new AssertionError();
             imageView.setBackgroundResource(R.drawable.animation_happy);
@@ -106,7 +107,6 @@ public class HomeFragment extends Fragment {
 
         imageView.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
             public void onGlobalLayout() {
-                idea.setText("Ha hi hi hi...pami");
                 int height = imageView.getHeight();
                 int width = imageView.getWidth();
                 int x = imageView.getLeft();

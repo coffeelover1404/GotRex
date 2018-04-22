@@ -128,8 +128,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
-    public void onStop() {
-        super.onStop();
+    public void onDestroy() {
+        super.onDestroy();
         SimpleDateFormat sdf = new SimpleDateFormat("hh:mm:ss");
 
         Date systemDate = Calendar.getInstance().getTime(); //Build variable & get current time
