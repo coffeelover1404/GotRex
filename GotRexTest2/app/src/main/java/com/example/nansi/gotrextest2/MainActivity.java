@@ -67,12 +67,14 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         String lastAccess = getLastAccess();
+        gotRexDatabase = new GotRexDatabase(this);
+        gotRexDatabase.open();
 
         //mTextMessage = (TextView) findViewById(R.id.mTextMessage);
-        //text = (TextView) findViewById(R.id.text);
-        if(lastAccess.equals("") != false) //have used before
+        text = (TextView) findViewById(R.id.text);
+        if(lastAccess.equals("") == false) //have used before
         {
-            //text.setText("Hello have used this app before" + lastAccess);
+            text.setText("Hello have used this app before" + lastAccess);
             try {
                 double newScore = 0;
                 SimpleDateFormat sdf = new SimpleDateFormat("hh:mm:ss");
@@ -95,8 +97,6 @@ public class MainActivity extends AppCompatActivity {
                 // get second
                 double sec = mills/1000;
                 //mTextMessage.setText(String.valueOf(sec));
-                gotRexDatabase = new GotRexDatabase(this);
-                gotRexDatabase.open();
                 //TODO: send second to database to calculate
                 gotRexDatabase.reduceStatus(sec);
 
@@ -128,8 +128,8 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
-    public void onDestroy() {
-        super.onDestroy();
+    public void onStop() {
+        super.onStop();
         SimpleDateFormat sdf = new SimpleDateFormat("hh:mm:ss");
 
         Date systemDate = Calendar.getInstance().getTime(); //Build variable & get current time
