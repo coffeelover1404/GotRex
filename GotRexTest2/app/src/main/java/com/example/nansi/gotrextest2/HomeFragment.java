@@ -1,15 +1,10 @@
 package com.example.nansi.gotrextest2;
 
 
-import android.content.DialogInterface;
-import android.content.Intent;
 import android.graphics.Rect;
 import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
-import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
-import android.support.v7.app.AlertDialog;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.MotionEvent;
 import android.view.View;
@@ -18,11 +13,6 @@ import android.view.ViewTreeObserver;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
-import java.util.Date;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -68,7 +58,6 @@ public class HomeFragment extends Fragment {
                             @Override
                             public void run() {
                                 //imageView.setImageAlpha(128);
-                                // TODO: ลงรูปเปลี่ยนแปลง
                                 //imageView.setVisibility(View.INVISIBLE);
                             }
                         });
