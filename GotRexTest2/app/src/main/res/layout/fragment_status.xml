@@ -187,12 +187,11 @@
         <Button
             android:id="@+id/deleteBtn"
             android:layout_width="140dp"
-            android:layout_height="80dp"
+            android:layout_height="60dp"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
-            android:layout_marginBottom="16dp"
-            android:background="@android:drawable/checkbox_off_background"
-            android:backgroundTint="@android:color/holo_orange_light"
+            android:layout_marginBottom="21dp"
+            android:background="@drawable/newButton"
             android:text="Delete"
             android:textSize="20sp"
             android:textStyle="bold" />
