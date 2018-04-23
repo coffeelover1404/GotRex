@@ -3,6 +3,8 @@ package com.example.nansi.gotrextest2;
 
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.graphics.drawable.AnimationDrawable;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
@@ -24,6 +26,8 @@ public class BathFragment extends Fragment {
     Button bathButt;
     int check=0;
     private GotRexDatabase gotRexDatabase;
+    Button cameraButt;
+    int show = 0;
 
     public BathFragment() {
         // Required empty public constructor
@@ -46,6 +50,9 @@ public class BathFragment extends Fragment {
         anim.start();
 
         bathButt.setOnClickListener(myClick);
+
+        cameraButt = (Button) myGotRex.findViewById(R.id.cam);
+        cameraButt.setOnClickListener(capture);
 
         return myGotRex;
     }
@@ -72,5 +79,20 @@ public class BathFragment extends Fragment {
             anim.start();
         }
     };
+
+    View.OnClickListener capture = new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            if(show==0) {
+                Bitmap b = Screenshot.rootViewShot(imageView);
+                imageView.setImageBitmap(b);
+                show = 1;
+            } else {
+                imageView.setImageBitmap(null);
+                show = 0;
+            }
+        }
+    };
+
 
 }

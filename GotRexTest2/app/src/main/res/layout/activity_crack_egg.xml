@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/bggrass"
     tools:context=".CrackEgg">
 
     <RelativeLayout
@@ -27,6 +28,14 @@
             android:layout_alignParentStart="true"
             android:layout_centerVertical="true"
             android:background="#3498db" />
+
+        <Button
+            android:id="@+id/cam"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignEnd="@+id/imageEgg"
+            android:layout_alignParentTop="true"
+            android:background="@drawable/screenshot" />
 
     </RelativeLayout>
 </android.support.constraint.ConstraintLayout>
