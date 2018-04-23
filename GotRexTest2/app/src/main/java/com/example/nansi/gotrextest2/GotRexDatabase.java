@@ -8,6 +8,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteException;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 
 public class GotRexDatabase extends Activity {
 
@@ -36,6 +37,8 @@ public class GotRexDatabase extends Activity {
     }
 
     public void open() throws SQLiteException {
+        if (db != null && db.isOpen())
+            db.close();
         try {
             db = dbHelper.getWritableDatabase();
         } catch (SQLiteException ex) {
@@ -47,12 +50,10 @@ public class GotRexDatabase extends Activity {
         db.close();
     }
 
-
     /////naming little Got Rex////////
 
     public long insertName(String name) {
         ContentValues newGotRexValues = new ContentValues();
-
         newGotRexValues.put(COL_1, 1);
         newGotRexValues.put(COL_2, name);
         newGotRexValues.put(COL_3,10);
@@ -68,7 +69,7 @@ public class GotRexDatabase extends Activity {
     public void deleteGotRex(){
         db.delete(TABLE_NAME,"id=?",new String[]{"1"});
     }
-    
+
     ///////////////// Check Growth//////////////////////////////////
     public boolean checkGrow(){
         String grow = "SELECT " + COL_8 + " FROM " + TABLE_NAME + " WHERE ID=1;";//Grow
@@ -81,7 +82,7 @@ public class GotRexDatabase extends Activity {
             return true;
         }
         else
-        return false;
+            return false;
     }
     ///////////////////////////// Check Bond ( T-rex or Godzilla)/////////////////////////////
     public boolean checkBond(){
@@ -331,15 +332,15 @@ public class GotRexDatabase extends Activity {
 
     ////// Check Empty Function/////////
 
-     public boolean checkDB(){
-         boolean empty = true;
-         Cursor cur = db.rawQuery("SELECT COUNT(*) FROM "+TABLE_NAME, null);
-         if (cur != null && cur.moveToFirst()) {
-             empty = (cur.getInt (0) == 0);
-         }
-         cur.close();
-         return empty;
-     }
+    public boolean checkDB(){
+        boolean empty = true;
+        Cursor cur = db.rawQuery("SELECT COUNT(*) FROM "+TABLE_NAME, null);
+        if (cur != null && cur.moveToFirst()) {
+            empty = (cur.getInt (0) == 0);
+        }
+        cur.close();
+        return empty;
+    }
 
     ////////////////////
 }

@@ -43,6 +43,7 @@ public class GotRexAdult extends Activity {
             @Override
             public void onClick(View v) {
                 //TODO: delete database here
+                gotRexDatabase.deleteGotRex();
                 Intent startGame = new Intent(GotRexAdult.this, NewLauncher.class);
                 startActivity(startGame);
             }
