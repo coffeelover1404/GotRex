@@ -108,7 +108,7 @@ public class MainActivity extends AppCompatActivity {
             }
         } else {
             AlertDialog.Builder mBuilder = new AlertDialog.Builder(MainActivity.this);
-            mBuilder.setMessage("Here is your new baby, please take care him to be a good adult!").setCancelable(false).setPositiveButton("OK", new DialogInterface.OnClickListener() {
+            mBuilder.setMessage("Here is your new baby, please take care of him!").setCancelable(false).setPositiveButton("OK", new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialog, int which) {
                     dialog.cancel();

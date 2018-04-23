@@ -78,7 +78,7 @@ public class NewLauncher extends Activity {
                             }
                         });
                         AlertDialog alert = mBuilder.create();
-                        alert.setTitle("No Name Setting");
+                        alert.setTitle("No Name Set");
                         alert.show();
                     }
                 }
