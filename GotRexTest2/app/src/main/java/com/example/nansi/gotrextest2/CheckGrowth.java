@@ -10,7 +10,7 @@ public class CheckGrowth {
     public static void getGrowth(boolean checkGrowth, final Activity act){
         if(checkGrowth == true){
             AlertDialog.Builder mBuilder = new AlertDialog.Builder(act);
-            mBuilder.setMessage("Now your baby become an adult, let's see what it will become!").setCancelable(false)
+            mBuilder.setMessage("Now your baby has grown up. Let's see what it will become!").setCancelable(false)
                     .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialog, int which) {
@@ -19,7 +19,7 @@ public class CheckGrowth {
                         }
                     });
             AlertDialog alert = mBuilder.create();
-            alert.setTitle("Success!");
+            alert.setTitle("Congratulation");
             alert.show();
         }
     }
