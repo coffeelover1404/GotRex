@@ -53,6 +53,7 @@ public class GotRexDatabase extends Activity {
     public long insertName(String name) {
         ContentValues newGotRexValues = new ContentValues();
 
+        newGotRexValues.put(COL_1, 1);
         newGotRexValues.put(COL_2, name);
         newGotRexValues.put(COL_3,10);
         newGotRexValues.put(COL_4,10);
@@ -305,7 +306,7 @@ public class GotRexDatabase extends Activity {
     private static class gotRexDatabaseOpen extends SQLiteOpenHelper {
 
         private static final String CREATE_TABLE = " CREATE TABLE " +
-                TABLE_NAME + " (" + COL_1 + " INTEGER PRIMARY KEY AUTOINCREMENT, " + COL_2 + " TEXT NOT NULL, " + COL_3 +
+                TABLE_NAME + " (" + COL_1 + " INTEGER PRIMARY KEY, " + COL_2 + " TEXT NOT NULL, " + COL_3 +
                 " DOUBLE NOT NULL, " + COL_4 + " DOUBLE NOT NULL, " + COL_5 + " DOUBLE NOT NULL, "
                 + COL_6 + " DOUBLE NOT NULL, " + COL_7 + " DOUBLE NOT NULL, "+COL_8+" DOUBLE NOT NULL );";
 
