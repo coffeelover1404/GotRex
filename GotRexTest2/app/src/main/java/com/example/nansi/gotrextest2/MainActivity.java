@@ -24,8 +24,8 @@ import java.util.Date;
 
 public class MainActivity extends AppCompatActivity {
 
-    TextView mTextMessage;
-    TextView text;
+    /*TextView mTextMessage;
+    TextView text;*/
     private GotRexDatabase gotRexDatabase;
     public boolean setName = false;
     MediaPlayer song;
@@ -74,10 +74,10 @@ public class MainActivity extends AppCompatActivity {
         gotRexDatabase.open();
 
         //mTextMessage = (TextView) findViewById(R.id.mTextMessage);
-        text = (TextView) findViewById(R.id.text);
+        //text = (TextView) findViewById(R.id.text);
         if (lastAccess.equals("") == false) //have used before
         {
-            text.setText("Hello have used this app before" + lastAccess);
+            //text.setText("Hello have used this app before" + lastAccess);
             try {
                 double newScore = 0;
                 SimpleDateFormat sdf = new SimpleDateFormat("hh:mm:ss");

@@ -146,19 +146,19 @@ public class HomeFragment extends Fragment {
         String wantTo = null;
         if(gotRexDatabase.pullStatus("hungry") == 0){
             //wantTo.equals("I'm hungry");
-            idea.setText("eat eat eat hungry...pami");
+            idea.setText("eat eat eat hungry...mami");
         }
         else if (gotRexDatabase.pullStatus("clean") == 0){
-            idea.setText("I em ictchy pami!");
+            idea.setText("I em itchy mami!");
         }
         else if (gotRexDatabase.pullStatus("energy") == 0){
             idea.setText("...Zzz...");
         }
         else if (gotRexDatabase.pullStatus("happy") == 0){
-            idea.setText("let's play pami...");
+            idea.setText("let's play mami...");
         }
         else{
-            idea.setText("no idea pami");
+            idea.setText("...mami");
         }
     }
 
