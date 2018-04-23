@@ -191,7 +191,7 @@
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
             android:layout_marginBottom="21dp"
-            android:background="@drawable/newButton"
+            android:background="@drawable/yellowbutton"
             android:text="Delete"
             android:textSize="20sp"
             android:textStyle="bold" />
