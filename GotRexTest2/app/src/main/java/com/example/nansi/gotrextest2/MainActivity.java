@@ -1,6 +1,7 @@
 package com.example.nansi.gotrextest2;
 
 //import android.app.FragmentTransaction;
+
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
@@ -62,8 +63,6 @@ public class MainActivity extends AppCompatActivity {
         }
     };
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -76,7 +75,7 @@ public class MainActivity extends AppCompatActivity {
 
         //mTextMessage = (TextView) findViewById(R.id.mTextMessage);
         text = (TextView) findViewById(R.id.text);
-        if(lastAccess.equals("") == false) //have used before
+        if (lastAccess.equals("") == false) //have used before
         {
             text.setText("Hello have used this app before" + lastAccess);
             try {
@@ -99,7 +98,7 @@ public class MainActivity extends AppCompatActivity {
                 //String diff = Hours + ":" + Mins + ":" + Secs;
 
                 // get second
-                double sec = mills/1000;
+                double sec = mills / 1000;
                 //mTextMessage.setText(String.valueOf(sec));
                 //TODO: send second to database to calculate
                 gotRexDatabase.reduceStatus(sec);
@@ -107,8 +106,7 @@ public class MainActivity extends AppCompatActivity {
             } catch (ParseException e) {
                 e.printStackTrace();
             }
-        }
-        else{
+        } else {
             AlertDialog.Builder mBuilder = new AlertDialog.Builder(MainActivity.this);
             mBuilder.setMessage("Here is your new baby, please take care him to be a good adult!").setCancelable(false).setPositiveButton("OK", new DialogInterface.OnClickListener() {
                 @Override
@@ -132,28 +130,31 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
-    public void onStop() {
+    public void onDestroy() {
+        gotRexDatabase.close();
+        super.onDestroy();
+    }
+
+    @Override
+    protected void onStop() {
         super.onStop();
         SimpleDateFormat sdf = new SimpleDateFormat("hh:mm:ss");
 
         Date systemDate = Calendar.getInstance().getTime(); //Build variable & get current time
         String myDate = sdf.format(systemDate); //build up string keep current time
         saveLastAccess(myDate);
-
-        gotRexDatabase.close();
-
     }
 
-    public void saveLastAccess(String lastTime){
-        SharedPreferences sharedPreferences = getSharedPreferences("lastAccessTime" , MODE_PRIVATE);
+    public void saveLastAccess(String lastTime) {
+        SharedPreferences sharedPreferences = getSharedPreferences("lastAccessTime", MODE_PRIVATE);
 
         SharedPreferences.Editor editor = sharedPreferences.edit();
         editor.putString("lastAccess", lastTime);
         editor.apply();
     }
 
-    public String getLastAccess(){
-        SharedPreferences sharedPreferences = getSharedPreferences("lastAccessTime" , MODE_PRIVATE);
+    public String getLastAccess() {
+        SharedPreferences sharedPreferences = getSharedPreferences("lastAccessTime", MODE_PRIVATE);
         String lastTime = sharedPreferences.getString("lastAccess", "");
 
         return lastTime;
