@@ -102,11 +102,11 @@ public class EatFragment extends Fragment {
                     anim = (AnimationDrawable)imageView.getBackground();
                     anim.start();
 
-                    if(view.getId() == R.id.food1) numFood = 1;
-                    else if(view.getId() == R.id.food2) numFood = 2;
-                    else if(view.getId() == R.id.food3) numFood = 3;
-                    else if(view.getId() == R.id.food4) numFood = 4;
-                    else if(view.getId() == R.id.food1) numFood = 5;
+                    if(view.getId() == R.id.food1) numFood = 20;
+                    else if(view.getId() == R.id.food2) numFood = 5;
+                    else if(view.getId() == R.id.food3) numFood = 30;
+                    else if(view.getId() == R.id.food4) numFood = 10;
+                    else if(view.getId() == R.id.food1) numFood = 30;
 
                     if(numFood!=0) {
                         gotRexDatabase = new GotRexDatabase(getActivity());

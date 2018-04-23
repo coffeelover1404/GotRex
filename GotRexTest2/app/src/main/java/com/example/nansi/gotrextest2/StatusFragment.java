@@ -65,7 +65,7 @@ public class StatusFragment extends Fragment {
                         .setPositiveButton("Yes", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        //TODO: delete database here
+                        gotRexDatabase.deleteGotRex();
                         Intent newGame = new Intent(getActivity(), NewLauncher.class);
                         startActivity(newGame);
                     }

@@ -23,6 +23,14 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.466">
 
+        <Button
+            android:id="@+id/cam"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentTop="true"
+            android:background="@drawable/screenshot" />
+
         <TextView
             android:id="@+id/check"
             android:layout_width="wrap_content"
@@ -37,6 +45,18 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="50dp"
             android:layout_marginTop="100dp" />
+
+        <TextView
+            android:id="@+id/think"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_alignTop="@+id/check"
+            android:layout_marginEnd="62dp"
+            android:text="TextView"
+            android:textColor="@android:color/background_light"
+            android:textSize="18sp"
+            android:textStyle="bold" />
 
         <ImageView
             android:id="@+id/imageBaby"

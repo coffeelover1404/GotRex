@@ -24,6 +24,7 @@ public class HomeFragment extends Fragment {
 
     ImageView imageView;
     AnimationDrawable anim;
+    TextView idea;
     private GotRexDatabase gotRexDatabase;
     //CheckGrowth checkGrowth;
     double value = 0;
@@ -65,6 +66,7 @@ public class HomeFragment extends Fragment {
                     }
                 }, 500);
             }
+            idea.setText("Ha hi hi hi...pami");
 
             if(imageView == null) throw new AssertionError();
             imageView.setBackgroundResource(R.drawable.animation_happy);
@@ -75,6 +77,7 @@ public class HomeFragment extends Fragment {
                 cancelTimer();
             }
             //touchID.setText(String.format("(%d, %d) %s %f", x, y, naJaTuuYuu, value));
+
             return true;
         }
     };
@@ -86,16 +89,19 @@ public class HomeFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
+        gotRexDatabase = new GotRexDatabase(getActivity());
+        gotRexDatabase.open();
         View myGotRex = inflater.inflate(R.layout.fragment_home, container, false);
         //touchID = myGotRex.findViewById(R.id.touchID);
-
+        idea = myGotRex.findViewById(R.id.think);
         imageView = (ImageView)myGotRex.findViewById(R.id.imageBaby);
         if(imageView == null) throw new AssertionError();
         imageView.setBackgroundResource(R.drawable.animation_baby);
 
         anim = (AnimationDrawable)imageView.getBackground();
         anim.start();
+
+        setIdea();
 
         myGotRex.setOnTouchListener(mTouchListener);
 
@@ -116,8 +122,6 @@ public class HomeFragment extends Fragment {
     private void cancelTimer() {
         //imageView.setImageAlpha(255);
         // TODO: ลงดาต้าเบส
-        gotRexDatabase = new GotRexDatabase(getActivity());
-        gotRexDatabase.open();
         gotRexDatabase.updateHappy(value);
         boolean check = gotRexDatabase.checkGrow();
         CheckGrowth.getGrowth(check, getActivity());
@@ -129,10 +133,32 @@ public class HomeFragment extends Fragment {
         anim = (AnimationDrawable)imageView.getBackground();
         anim.start();
 
+        setIdea();
+
         //imageView.setVisibility(View.VISIBLE);
         if (running) {
             timer.cancel();
             running = false;
+        }
+    }
+
+    public void setIdea(){
+        String wantTo = null;
+        if(gotRexDatabase.pullStatus("hungry") == 0){
+            //wantTo.equals("I'm hungry");
+            idea.setText("eat eat eat hungry...pami");
+        }
+        else if (gotRexDatabase.pullStatus("clean") == 0){
+            idea.setText("I em ictchy pami!");
+        }
+        else if (gotRexDatabase.pullStatus("energy") == 0){
+            idea.setText("...Zzz...");
+        }
+        else if (gotRexDatabase.pullStatus("happy") == 0){
+            idea.setText("let's play pami...");
+        }
+        else{
+            idea.setText("no idea pami");
         }
     }
 
