@@ -65,7 +65,7 @@ public class GotRexDatabase extends Activity {
 
     ///////////////////Delete Got-Rex///////////////////////////////
     public void deleteGotRex(){
-        db.execSQL("DROP TABLE IF EXISTS "+TABLE_NAME);
+        db.delete(TABLE_NAME,"id=?",new String[]{"1"});
     }
     
     ///////////////// Check Growth//////////////////////////////////
