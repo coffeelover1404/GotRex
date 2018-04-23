@@ -4,6 +4,7 @@ package com.example.nansi.gotrextest2;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.SharedPreferences;
+import android.media.MediaPlayer;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.os.Bundle;
@@ -26,6 +27,7 @@ public class MainActivity extends AppCompatActivity {
     TextView text;
     private GotRexDatabase gotRexDatabase;
     public boolean setName = false;
+    MediaPlayer song;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -66,6 +68,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        song = MediaPlayer.create(MainActivity.this,R.raw.dino);
+        song.start();
         String lastAccess = getLastAccess();
         gotRexDatabase = new GotRexDatabase(this);
         gotRexDatabase.open();
