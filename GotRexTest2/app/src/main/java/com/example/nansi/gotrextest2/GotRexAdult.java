@@ -63,7 +63,9 @@ public class GotRexAdult extends Activity {
         }
         else{
             //TODO: Godzilla
-            imageView.setBackgroundResource(R.drawable.animation_trex);
+            imageView.getLayoutParams().width = 1000;
+            imageView.getLayoutParams().height = 1200;
+            imageView.setBackgroundResource(R.drawable.animation_godzilla);
         }
         anim = (AnimationDrawable)imageView.getBackground();
         anim.start();
