@@ -153,7 +153,6 @@ public class GotRexDatabase extends Activity {
         //update Query//
         db.execSQL("UPDATE " + TABLE_NAME + " SET " + COL_5 + " = " + COL_5 + " +" + add + " WHERE ID=1");
         db.execSQL("UPDATE " + TABLE_NAME + " SET " + COL_7 + " = " + COL_7 + " +" + add + " WHERE ID=1");
-        db.execSQL("UPDATE " + TABLE_NAME + " SET " + COL_8 + " = " + COL_8 + " +5 WHERE ID=1");
 
         //Prepare query for check with MAX//
         String upHap = "SELECT " + COL_5 + " FROM " + TABLE_NAME + " WHERE ID=1;";
@@ -175,6 +174,7 @@ public class GotRexDatabase extends Activity {
         if (checkBond > MAXbond) {
             db.execSQL("UPDATE " + TABLE_NAME + " SET " + COL_7 + " = 100 WHERE ID=1");
         }
+        else db.execSQL("UPDATE " + TABLE_NAME + " SET " + COL_8 + " = " + COL_8 + " +5 WHERE ID=1");
 
     }
 
@@ -184,7 +184,6 @@ public class GotRexDatabase extends Activity {
 
     public void updateEat(int score){
         String upEat ="SELECT "+COL_3+" FROM "+TABLE_NAME+" WHERE ID=1;";
-        db.execSQL("UPDATE "+TABLE_NAME+" SET "+COL_8+" = "+COL_8+" +5 WHERE ID=1");
 
         db.execSQL("UPDATE "+TABLE_NAME+" SET "+COL_3+" = "+COL_3+" + " +score +" WHERE ID=1");
 
@@ -192,9 +191,10 @@ public class GotRexDatabase extends Activity {
         curEat.moveToFirst();
         Double checkEat = curEat.getDouble(0);
 
-        if(checkEat > MAXnormal)
-            db.execSQL("UPDATE "+TABLE_NAME+" SET "+COL_3+" = 100  WHERE ID=1");
-
+        if(checkEat > MAXnormal) {
+            db.execSQL("UPDATE " + TABLE_NAME + " SET " + COL_3 + " = 100  WHERE ID=1");
+        }
+        else db.execSQL("UPDATE " + TABLE_NAME + " SET " + COL_8 + " = " + COL_8 + " +5 WHERE ID=1");
     }
 
 
@@ -203,7 +203,6 @@ public class GotRexDatabase extends Activity {
     public void updateSleep(){
         //update Query//
         db.execSQL("UPDATE "+TABLE_NAME+" SET "+COL_6+" = "+COL_6+" + 40 WHERE ID=1");
-        db.execSQL("UPDATE "+TABLE_NAME+" SET "+COL_8+" = "+COL_8+" +5 WHERE ID=1");
 
         //Prepare query for check with MAx//
         String upSleep = "SELECT "+COL_6+" FROM "+TABLE_NAME+" WHERE ID=1;";//Sleep
@@ -216,6 +215,7 @@ public class GotRexDatabase extends Activity {
         if(checkSleep > MAXnormal){
             db.execSQL("UPDATE "+TABLE_NAME+" SET "+COL_6+" = 100 WHERE ID=1");;
         }
+        else db.execSQL("UPDATE " + TABLE_NAME + " SET " + COL_8 + " = " + COL_8 + " +5 WHERE ID=1");
     }
 
 
@@ -224,7 +224,6 @@ public class GotRexDatabase extends Activity {
     public void updateBath(){
         //update Query//
         db.execSQL("UPDATE "+TABLE_NAME+" SET "+COL_4+" = "+COL_4+" +50 WHERE ID=1");
-        db.execSQL("UPDATE "+TABLE_NAME+" SET "+COL_8+" = "+COL_8+" +5 WHERE ID=1");
 
         //Prepare query for check with MAx//
         String upBath = "SELECT "+COL_4+" FROM "+TABLE_NAME+" WHERE ID=1;";
@@ -237,6 +236,7 @@ public class GotRexDatabase extends Activity {
         if(checkBath > MAXnormal){
             db.execSQL("UPDATE "+TABLE_NAME+" SET "+COL_4+" = 100 WHERE ID=1");;
         }
+        else db.execSQL("UPDATE " + TABLE_NAME + " SET " + COL_8 + " = " + COL_8 + " +5 WHERE ID=1");
     }
 
     //////////////////Get Status////////////////////////////////
