@@ -144,6 +144,7 @@ public class MainActivity extends AppCompatActivity {
         Date systemDate = Calendar.getInstance().getTime(); //Build variable & get current time
         String myDate = sdf.format(systemDate); //build up string keep current time
         saveLastAccess(myDate);
+        song.stop();
     }
 
     public void saveLastAccess(String lastTime) {
