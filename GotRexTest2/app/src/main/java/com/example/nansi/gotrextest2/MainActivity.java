@@ -68,6 +68,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         song = MediaPlayer.create(MainActivity.this,R.raw.dino);
+        song.setLooping(true);
         song.start();
         String lastAccess = getLastAccess();
         gotRexDatabase = new GotRexDatabase(this);
