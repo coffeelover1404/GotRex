@@ -223,7 +223,7 @@ public class GotRexDatabase extends Activity {
 
     public void updateBath(){
         //update Query//
-        db.execSQL("UPDATE "+TABLE_NAME+" SET "+COL_4+" = "+COL_4+" +50 WHERE ID=1");
+        db.execSQL("UPDATE "+TABLE_NAME+" SET "+COL_4+" = "+COL_4+" +35 WHERE ID=1");
 
         //Prepare query for check with MAx//
         String upBath = "SELECT "+COL_4+" FROM "+TABLE_NAME+" WHERE ID=1;";
