@@ -133,7 +133,14 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onDestroy() {
         gotRexDatabase.close();
+        song.stop();
         super.onDestroy();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        song.start();
     }
 
     @Override
@@ -144,7 +151,7 @@ public class MainActivity extends AppCompatActivity {
         Date systemDate = Calendar.getInstance().getTime(); //Build variable & get current time
         String myDate = sdf.format(systemDate); //build up string keep current time
         saveLastAccess(myDate);
-        song.stop();
+        song.pause();
     }
 
     public void saveLastAccess(String lastTime) {
