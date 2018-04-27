@@ -33,8 +33,8 @@ public class EatFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
 
+        // Inflate the layout for this fragment
         View myGotRex = inflater.inflate(R.layout.fragment_eat, container, false);
 
         food1 = (ImageView) myGotRex.findViewById(R.id.food1);
@@ -47,6 +47,7 @@ public class EatFragment extends Fragment {
         imageView = (ImageView)myGotRex.findViewById(R.id.babyEat);
         if(imageView == null) throw new AssertionError();
         imageView.setBackgroundResource(R.drawable.animation_eat);
+
         //start animation
         anim = (AnimationDrawable)imageView.getBackground();
         anim.start();
@@ -61,10 +62,13 @@ public class EatFragment extends Fragment {
         return myGotRex;
     }
 
+
    View.OnLongClickListener myClick = new View.OnLongClickListener() {
         @Override
         public boolean onLongClick(View v) {
             ClipData data = ClipData.newPlainText("","");
+
+            // shadow of food image will appear during it's dragged
             View.DragShadowBuilder shadow = new View.DragShadowBuilder(v);
 
             //check the build version to choose the appropriated method
@@ -113,6 +117,7 @@ public class EatFragment extends Fragment {
                     else if(view.getId() == R.id.food4) numFood = 10;
                     else if(view.getId() == R.id.food1) numFood = 30;
 
+                    // update eat status and check baby's growth
                     if(numFood!=0) {
                         gotRexDatabase = new GotRexDatabase(getActivity());
                         gotRexDatabase.open();

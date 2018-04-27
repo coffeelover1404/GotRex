@@ -13,6 +13,7 @@ public class WelcomeScreen extends Activity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.welcome_screen);
 
+        // move to home screen (HomeFragment) after welcome screen appear for 1.5 sec
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {

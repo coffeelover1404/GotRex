@@ -23,11 +23,9 @@ public class BathFragment extends Fragment {
 
     ImageView imageView;
     AnimationDrawable anim;
-    Button bathButt;
+    Button bathBtn;
     int check=0;
     private GotRexDatabase gotRexDatabase;
-    Button cameraButt;
-    int show = 0;
 
     public BathFragment() {
         // Required empty public constructor
@@ -41,7 +39,7 @@ public class BathFragment extends Fragment {
         View myGotRex = inflater.inflate(R.layout.fragment_bath, container, false);
 
         imageView = (ImageView)myGotRex.findViewById(R.id.babyBath);
-        bathButt = (Button) myGotRex.findViewById(R.id.bathButton);
+        bathBtn = (Button) myGotRex.findViewById(R.id.bathButton);
 
         if(imageView == null) throw new AssertionError();
         imageView.setBackgroundResource(R.drawable.animation_bath);
@@ -49,50 +47,38 @@ public class BathFragment extends Fragment {
         anim = (AnimationDrawable)imageView.getBackground();
         anim.start();
 
-        bathButt.setOnClickListener(myClick);
-
-        //cameraButt = (Button) myGotRex.findViewById(R.id.cam);
-        //cameraButt.setOnClickListener(capture);
+        bathBtn.setOnClickListener(myClick);
 
         return myGotRex;
     }
 
+    // for bath button
     View.OnClickListener myClick = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
             if(imageView == null) throw new AssertionError();
             if(check==0) {
-                imageView.setBackgroundResource(R.drawable.animation_rinse);
+                imageView.setBackgroundResource(R.drawable.animation_rinse);    // call animation from animation_rinse.xml
                 check = 1;
+
+                // update clean status when the user press rinse button
                 gotRexDatabase = new GotRexDatabase(getActivity());
                 gotRexDatabase.open();
                 gotRexDatabase.updateBath();
+
+                // check if the baby grow up
                 boolean check = gotRexDatabase.checkGrow();
                 CheckGrowth.getGrowth(check, getActivity());
 
             } else {
-                imageView.setBackgroundResource(R.drawable.animation_bath);
+                imageView.setBackgroundResource(R.drawable.animation_bath);    // call animation from animation_bath.xml
                 check = 0;
             }
 
+            // animation play
             anim = (AnimationDrawable)imageView.getBackground();
             anim.start();
         }
     };
-
-    /*View.OnClickListener capture = new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-            if(show==0) {
-                Bitmap b = Screenshot.rootViewShot(myGotRex);  // capture screen
-                imageView.setImageBitmap(b);
-                show = 1;
-            } else {
-                imageView.setImageBitmap(null);
-                show = 0;
-            }
-        }
-    };*/
-
 
 }
