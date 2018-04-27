@@ -3,4 +3,5 @@
     <color name="colorPrimary">#f4c23a</color>
     <color name="colorPrimaryDark">#eaa444</color>
     <color name="colorAccent">#000000</color>
+    <color name="screenshot_bg">#00b89f7d</color>
 </resources>

@@ -51,8 +51,8 @@ public class BathFragment extends Fragment {
 
         bathButt.setOnClickListener(myClick);
 
-        cameraButt = (Button) myGotRex.findViewById(R.id.cam);
-        cameraButt.setOnClickListener(capture);
+        //cameraButt = (Button) myGotRex.findViewById(R.id.cam);
+        //cameraButt.setOnClickListener(capture);
 
         return myGotRex;
     }
@@ -80,11 +80,11 @@ public class BathFragment extends Fragment {
         }
     };
 
-    View.OnClickListener capture = new View.OnClickListener() {
+    /*View.OnClickListener capture = new View.OnClickListener() {
         @Override
         public void onClick(View v) {
             if(show==0) {
-                Bitmap b = Screenshot.rootViewShot(imageView);
+                Bitmap b = Screenshot.rootViewShot(myGotRex);  // capture screen
                 imageView.setImageBitmap(b);
                 show = 1;
             } else {
@@ -92,7 +92,7 @@ public class BathFragment extends Fragment {
                 show = 0;
             }
         }
-    };
+    };*/
 
 
 }

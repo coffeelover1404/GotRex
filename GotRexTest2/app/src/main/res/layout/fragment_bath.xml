@@ -17,14 +17,6 @@
         android:layout_marginStart="10dp"
         android:layout_marginTop="10dp">
 
-        <Button
-            android:id="@+id/cam"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:layout_alignParentEnd="true"
-            android:layout_alignParentTop="true"
-            android:background="@drawable/screenshot" />
-
         <ImageView
             android:id="@+id/babyBath"
             android:layout_width="320dp"
