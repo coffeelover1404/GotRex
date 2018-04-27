@@ -102,7 +102,7 @@ public class MainActivity extends AppCompatActivity {
 
                 txt = (TextView) findViewById(R.id.path);
 
-                b = Screenshot.rootViewShot(v);
+                b = rootViewShot(v);
                 txt.setText("Image saved");
                 darkBg.setBackgroundColor(Color.parseColor("#33333300"));
                 capturedImg.setImageBitmap(b);
@@ -237,6 +237,18 @@ public class MainActivity extends AppCompatActivity {
         } catch (Exception e) {
             e.printStackTrace();
         }
+    }
+
+    public static Bitmap takeScreenshot(View v) {
+        v.setDrawingCacheEnabled(true);
+        v.buildDrawingCache(true);
+        Bitmap b = Bitmap.createBitmap(v.getDrawingCache());
+        v.setDrawingCacheEnabled(false);
+        return b;
+    }
+
+    public static Bitmap rootViewShot(View v) {
+        return takeScreenshot(v.getRootView());
     }
 
 }
