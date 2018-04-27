@@ -12,12 +12,13 @@ public class CrackEgg extends Activity {
 
     ImageView imageView;
     AnimationDrawable anim;
-    private static int SPLASH_TIME_OUT = 4000;
+    private static int SPLASH_TIME_OUT = 4000;  // duration for the welcome screen appearance
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_crack_egg);
 
+        // move to home screen (HomeFragment) after the egg cracked (4 sec.)
         new Handler().postDelayed(new Runnable() {
             @Override
             public void run() {
@@ -31,6 +32,7 @@ public class CrackEgg extends Activity {
         imageView = findViewById(R.id.imageEgg);
         if(imageView == null) throw new AssertionError();
         imageView.setBackgroundResource(R.drawable.animation_egg);
+
         //play egg animation
         anim = (AnimationDrawable)imageView.getBackground();
         anim.start();

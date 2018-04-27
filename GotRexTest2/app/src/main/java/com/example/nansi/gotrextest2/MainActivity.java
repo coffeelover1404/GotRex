@@ -222,9 +222,7 @@ public class MainActivity extends AppCompatActivity {
         this.imageName = image_name;
 
         String root = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES).toString();
-        //root = "storage/emulated/0/DCIM/camera";
-        /*txt = (TextView) findViewById(R.id.path);
-        txt.setText(root);*/
+
         File myDir = new File(root);
         if(!myDir.exists()) myDir.mkdirs();
         String fname = "Gotrex-" + image_name + picNum + ".jpg";
