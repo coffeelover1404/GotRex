@@ -42,18 +42,16 @@ public class NewLauncher extends Activity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
-        //if ไป intent หน้าอื่น
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_new_launcher);
         gotRexDatabase = new GotRexDatabase(this);
         gotRexDatabase.open();
-        boolean  check = gotRexDatabase.checkDB();
-        if(check == false){
-            Intent continueGame = new Intent(NewLauncher.this, MainActivity.class);
+        boolean  check = gotRexDatabase.checkDB(); // Call check database function to determine the start page
+        if(check == false){ //table not empty mean that player already named baby
+            Intent continueGame = new Intent(NewLauncher.this, MainActivity.class); // go to home page
                       startActivity(continueGame);
         }
-        else {
-            //else all down here ไม่มั่นใจว่าทั้งหมดนี่จริงๆ รึเปล่านะ แต่เดาว่างั้น
+        else { //table mean that player did not named baby and crack baby egg yet
             super.onCreate(savedInstanceState);
             setContentView(R.layout.activity_new_launcher);
 
@@ -62,15 +60,15 @@ public class NewLauncher extends Activity {
 
             okButton.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View arg0) {
-                    if (editText.getText().length() > 0) {
+                    if (editText.getText().length() > 0) { //get name of baby from player
                         String Name = editText.getText().toString();
                         editText.setText("");
 
-                        gotRexDatabase.insertName(Name);
-                        Intent startGame = new Intent(NewLauncher.this, CrackEgg.class);
+                        gotRexDatabase.insertName(Name); // insert name into table
+                        Intent startGame = new Intent(NewLauncher.this, CrackEgg.class); // go to crack baby egg page
                         startActivity(startGame);
                     } else {
-                        AlertDialog.Builder mBuilder = new AlertDialog.Builder(NewLauncher.this);
+                        AlertDialog.Builder mBuilder = new AlertDialog.Builder(NewLauncher.this); // check if player really name the baby
                         mBuilder.setMessage("Please name your pet!").setCancelable(false).setPositiveButton("OK", new DialogInterface.OnClickListener() {
                             @Override
                             public void onClick(DialogInterface dialog, int which) {
