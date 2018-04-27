@@ -15,9 +15,6 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 
 
-/**
- * A simple {@link Fragment} subclass.
- */
 public class StatusFragment extends Fragment {
 
     ProgressBar happyBar;
@@ -57,6 +54,8 @@ public class StatusFragment extends Fragment {
         happyBar.setProgress(gotRexDatabase.pullStatus("happy"));
         growthBar.setProgress(gotRexDatabase.pullStatus("grow"));
         babyName.setText(gotRexDatabase.pullName());
+
+        //if the user choose to delete his pet, prompt out the dialog
         deletePet.setOnClickListener((new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -65,14 +64,14 @@ public class StatusFragment extends Fragment {
                         .setPositiveButton("No", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        dialog.cancel();
+                        dialog.cancel(); //if No, close the dialog
                     }
                 }).setNegativeButton("Yes", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        gotRexDatabase.deleteGotRex();
+                        gotRexDatabase.deleteGotRex(); //if yes, delete the database
                         Intent newGame = new Intent(getActivity(), NewLauncher.class);
-                        startActivity(newGame);
+                        startActivity(newGame); //go back to set the name of the baby
                     }
                 });
                 AlertDialog alert = mBuilder.create();

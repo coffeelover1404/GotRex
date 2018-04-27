@@ -37,6 +37,8 @@ public class SleepFragment extends Fragment {
         anim = (AnimationDrawable)imageView.getBackground();
         anim.start();
 
+        //when the user come to this page, increase the energy score
+        //then check the growth score
         gotRexDatabase = new GotRexDatabase(getActivity());
         gotRexDatabase.open();
         gotRexDatabase.updateSleep();

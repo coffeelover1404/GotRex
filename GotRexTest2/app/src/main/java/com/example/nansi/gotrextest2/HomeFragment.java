@@ -1,3 +1,5 @@
+//courtesy by Thatchapon Unprasert on function mTouchListener, withinRect and few parts of cancelTimer
+// for checking the user rubbing their finger on the screen
 package com.example.nansi.gotrextest2;
 
 
@@ -26,8 +28,8 @@ public class HomeFragment extends Fragment {
     AnimationDrawable anim;
     TextView idea;
     private GotRexDatabase gotRexDatabase;
-    //CheckGrowth checkGrowth;
     double value = 0;
+
     public HomeFragment() {
         // Required empty public constructor
     }
@@ -51,17 +53,10 @@ public class HomeFragment extends Fragment {
                 running = true;
                 timer = new Timer();
                 value+=5;
-                // After 500ms of somewhat tuuing, we consider it actual tuuing
+                // After 500ms of somewhat rubbing, we consider it actual rubbing
                 timer.schedule(new TimerTask() {
                     @Override
                     public void run() {
-                        getActivity().runOnUiThread(new Runnable() {
-                            @Override
-                            public void run() {
-                                //imageView.setImageAlpha(128);
-                                //imageView.setVisibility(View.INVISIBLE);
-                            }
-                        });
                         running = false;
                     }
                 }, 500);
@@ -73,10 +68,10 @@ public class HomeFragment extends Fragment {
             anim = (AnimationDrawable)imageView.getBackground();
             anim.start();
 
+            //if the user stop rubbing cancel the timer
             if (!naJaTuuYuu) {
                 cancelTimer();
             }
-            //touchID.setText(String.format("(%d, %d) %s %f", x, y, naJaTuuYuu, value));
 
             return true;
         }
@@ -91,10 +86,10 @@ public class HomeFragment extends Fragment {
                              Bundle savedInstanceState) {
         gotRexDatabase = new GotRexDatabase(getActivity());
         gotRexDatabase.open();
+
         View myGotRex = inflater.inflate(R.layout.fragment_home, container, false);
-        //touchID = myGotRex.findViewById(R.id.touchID);
         idea = myGotRex.findViewById(R.id.think);
-        imageView = (ImageView)myGotRex.findViewById(R.id.imageBaby);
+        imageView = myGotRex.findViewById(R.id.imageBaby);
         if(imageView == null) throw new AssertionError();
         imageView.setBackgroundResource(R.drawable.animation_baby);
 
@@ -105,6 +100,7 @@ public class HomeFragment extends Fragment {
 
         myGotRex.setOnTouchListener(mTouchListener);
 
+        //get the area to listen user onTouch
         imageView.getViewTreeObserver().addOnGlobalLayoutListener(new ViewTreeObserver.OnGlobalLayoutListener() {
             public void onGlobalLayout() {
                 int height = imageView.getHeight();
@@ -120,12 +116,13 @@ public class HomeFragment extends Fragment {
     }
 
     private void cancelTimer() {
-        //imageView.setImageAlpha(255);
-        // TODO: ลงดาต้าเบส
+        //if the user stop rubbing
+        //add the score on database
         gotRexDatabase.updateHappy(value);
         boolean check = gotRexDatabase.checkGrow();
         CheckGrowth.getGrowth(check, getActivity());
 
+        //set value (score) back to 0
         value = 0;
 
         if(imageView == null) throw new AssertionError();
@@ -135,7 +132,6 @@ public class HomeFragment extends Fragment {
 
         setIdea();
 
-        //imageView.setVisibility(View.VISIBLE);
         if (running) {
             timer.cancel();
             running = false;
@@ -143,22 +139,20 @@ public class HomeFragment extends Fragment {
     }
 
     public void setIdea(){
-        String wantTo = null;
         if(gotRexDatabase.pullStatus("hungry") == 0){
-            //wantTo.equals("I'm hungry");
-            idea.setText("eat eat eat hungry...mami");
+            idea.setText("eat eat eat hungry...pami");
         }
         else if (gotRexDatabase.pullStatus("clean") == 0){
-            idea.setText("I em itchy mami!");
+            idea.setText("I em itchy pami!");
         }
         else if (gotRexDatabase.pullStatus("energy") == 0){
             idea.setText("...Zzz...");
         }
         else if (gotRexDatabase.pullStatus("happy") == 0){
-            idea.setText("let's play mami...");
+            idea.setText("let's play pami...");
         }
         else{
-            idea.setText("...mami");
+            idea.setText("...pami");
         }
     }
 

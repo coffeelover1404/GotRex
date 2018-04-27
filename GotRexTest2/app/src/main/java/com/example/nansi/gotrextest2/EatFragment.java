@@ -43,10 +43,11 @@ public class EatFragment extends Fragment {
         food4 = (ImageView) myGotRex.findViewById(R.id.food4);
         food5 = (ImageView) myGotRex.findViewById(R.id.food5);
 
+        //animation setting (baby waiting for food)
         imageView = (ImageView)myGotRex.findViewById(R.id.babyEat);
         if(imageView == null) throw new AssertionError();
         imageView.setBackgroundResource(R.drawable.animation_eat);
-
+        //start animation
         anim = (AnimationDrawable)imageView.getBackground();
         anim.start();
 
@@ -65,8 +66,9 @@ public class EatFragment extends Fragment {
         public boolean onLongClick(View v) {
             ClipData data = ClipData.newPlainText("","");
             View.DragShadowBuilder shadow = new View.DragShadowBuilder(v);
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
 
+            //check the build version to choose the appropriated method
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
                 v.startDragAndDrop(data, shadow, v, 0);
             } else {
                 v.startDrag(data, shadow, v, 0);
@@ -78,30 +80,33 @@ public class EatFragment extends Fragment {
 
    View.OnDragListener dragListener = new View.OnDragListener() {
         @Override
-
         public boolean onDrag(View v, DragEvent event) {
 
             int dragEvent = event.getAction();
             int numFood = 0;
 
             switch(dragEvent){
-                case DragEvent.ACTION_DRAG_ENTERED:
+                case DragEvent.ACTION_DRAG_ENTERED: //user starts to hold or select the food
+                    //the baby excited move
                     if(imageView == null) throw new AssertionError();
                     imageView.setBackgroundResource(R.drawable.eat5);
                     break;
-                case DragEvent.ACTION_DRAG_EXITED:
+                case DragEvent.ACTION_DRAG_EXITED: //user throws the food away
+                    //the baby move normally
                     if(imageView == null) throw new AssertionError();
                     imageView.setBackgroundResource(R.drawable.animation_eat);
                     break;
-                case DragEvent.ACTION_DROP:
+                case DragEvent.ACTION_DROP: //user drop food on the baby
 
                     final View view = (View) event.getLocalState();
 
+                    //the baby chews food
                     if(imageView == null) throw new AssertionError();
                     imageView.setBackgroundResource(R.drawable.animation_chew);
                     anim = (AnimationDrawable)imageView.getBackground();
                     anim.start();
 
+                    //check the food score
                     if(view.getId() == R.id.food1) numFood = 20;
                     else if(view.getId() == R.id.food2) numFood = 5;
                     else if(view.getId() == R.id.food3) numFood = 30;

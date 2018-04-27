@@ -172,6 +172,7 @@ public class GotRexDatabase extends Activity {
             db.execSQL("UPDATE " + TABLE_NAME + " SET " + COL_5 + " = 100 WHERE ID=1");
         }
         else db.execSQL("UPDATE " + TABLE_NAME + " SET " + COL_8 + " = " + COL_8 + " +5 WHERE ID=1");
+
         if (checkBond > MAXbond) {
             db.execSQL("UPDATE " + TABLE_NAME + " SET " + COL_7 + " = 300 WHERE ID=1");
         }
