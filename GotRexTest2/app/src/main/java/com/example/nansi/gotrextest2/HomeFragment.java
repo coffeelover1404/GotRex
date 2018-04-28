@@ -1,4 +1,4 @@
-//courtesy by Thatchapon Unprasert on function mTouchListener, withinRect and few parts of cancelTimer
+//courtesy by Thatchapon Unprasert (5888) on function mTouchListener, withinRect and few parts of cancelTimer
 // for checking the user rubbing their finger on the screen
 package com.example.nansi.gotrextest2;
 
