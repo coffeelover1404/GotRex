@@ -73,7 +73,7 @@ public class GotRexAdult extends Activity {
                 b = CaptureScreen.rootViewShot(v);
                 darkBg.setBackgroundColor(Color.parseColor("#33333300"));
                 capturedImg.setImageBitmap(b);
-                CaptureScreen.saveImage(b, "Gotrex");
+                CaptureScreen.saveImage(b, "Gotrex", GotRexAdult.this);
                 txt.setText("image saved");
 
                 new Handler().postDelayed(new Runnable() {
