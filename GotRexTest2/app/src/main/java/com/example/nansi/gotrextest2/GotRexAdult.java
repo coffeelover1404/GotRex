@@ -2,11 +2,16 @@ package com.example.nansi.gotrextest2;
 
 import android.app.Activity;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.Color;
 import android.graphics.drawable.AnimationDrawable;
+import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.os.Handler;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.TextView;
 
 public class GotRexAdult extends Activity {
 
@@ -15,6 +20,11 @@ public class GotRexAdult extends Activity {
 
     ImageView imageView;
     AnimationDrawable anim;
+
+    Bitmap b;
+    Button cameraBtn;
+    ImageView capturedImg, darkBg;
+    TextView txt;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -50,6 +60,34 @@ public class GotRexAdult extends Activity {
         }
         anim = (AnimationDrawable)imageView.getBackground();
         anim.start();
+
+
+        capturedImg = (ImageView) findViewById(R.id.imageView);
+        darkBg = (ImageView) findViewById(R.id.dark);
+        cameraBtn = (Button) findViewById(R.id.cameraa);
+
+        cameraBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                txt = (TextView) findViewById(R.id.path);
+                b = CaptureScreen.rootViewShot(v);
+                darkBg.setBackgroundColor(Color.parseColor("#33333300"));
+                capturedImg.setImageBitmap(b);
+                CaptureScreen.saveImage(b, "Gotrex");
+                txt.setText("image saved");
+
+                new Handler().postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        capturedImg.setImageBitmap(null);
+                        darkBg.setBackgroundColor(Color.parseColor("#00000000"));
+                        txt.setText("");
+                    }
+                }, 1000);
+
+            }
+        });
+
 
     }
 }

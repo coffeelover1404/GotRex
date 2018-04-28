@@ -7,7 +7,6 @@ import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.media.MediaPlayer;
-import android.os.Environment;
 import android.os.Handler;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
@@ -16,15 +15,12 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import java.io.File;
-import java.io.FileOutputStream;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -37,11 +33,10 @@ public class MainActivity extends AppCompatActivity {
     private GotRexDatabase gotRexDatabase;
     public boolean setName = false;
     MediaPlayer song;
-    public int picNum = 0;
-    Bitmap b, bm;
-    Button cameraButt;
+    Bitmap b;
+    Button cameraBtn;
     ImageView capturedImg, darkBg;
-    String imageName;
+    TextView txt;
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
             = new BottomNavigationView.OnNavigationItemSelectedListener() {
@@ -54,27 +49,27 @@ public class MainActivity extends AppCompatActivity {
                 case R.id.navigation_home:
                     setTitle("Home");
                     transaction.replace(R.id.content, new HomeFragment()).commit();
-                    cameraButt.setVisibility(View.VISIBLE);
+                    cameraBtn.setVisibility(View.VISIBLE);
                     return true;
                 case R.id.navigation_eat:
                     setTitle("Eat");
                     transaction.replace(R.id.content, new EatFragment()).commit();
-                    cameraButt.setVisibility(View.VISIBLE);
+                    cameraBtn.setVisibility(View.VISIBLE);
                     return true;
                 case R.id.navigation_bath:
                     setTitle("Take a Bath");
                     transaction.replace(R.id.content, new BathFragment()).commit();
-                    cameraButt.setVisibility(View.VISIBLE);
+                    cameraBtn.setVisibility(View.VISIBLE);
                     return true;
                 case R.id.navigation_status:
                     setTitle("Status");
                     transaction.replace(R.id.content, new StatusFragment()).commit();
-                    cameraButt.setVisibility(View.INVISIBLE);
+                    cameraBtn.setVisibility(View.INVISIBLE);
                     return true;
                 case R.id.navigation_sleep:
                     setTitle("Sleep");
                     transaction.replace(R.id.content, new SleepFragment()).commit();
-                    cameraButt.setVisibility(View.VISIBLE);
+                    cameraBtn.setVisibility(View.VISIBLE);
                     return true;
             }
             return false;
@@ -94,19 +89,17 @@ public class MainActivity extends AppCompatActivity {
 
         capturedImg = (ImageView) findViewById(R.id.imageView);
         darkBg = (ImageView) findViewById(R.id.dark);
-        cameraButt = (Button) findViewById(R.id.cameraa);
+        cameraBtn = (Button) findViewById(R.id.cameraa);
 
-        cameraButt.setOnClickListener(new View.OnClickListener() {
+        cameraBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 txt = (TextView) findViewById(R.id.path);
-
-                b = rootViewShot(v);
-                txt.setText("Image saved");
+                b = CaptureScreen.rootViewShot(v);
                 darkBg.setBackgroundColor(Color.parseColor("#33333300"));
                 capturedImg.setImageBitmap(b);
-                saveImage(b, "eiei");
+                CaptureScreen.saveImage(b, "Gotrex");
+                txt.setText("image saved");
 
                 new Handler().postDelayed(new Runnable() {
                     @Override
@@ -216,39 +209,6 @@ public class MainActivity extends AppCompatActivity {
         return lastTime;
 
     }
-    TextView txt;
-    public void saveImage(Bitmap finalBitmap, String image_name) {
-        this.bm = finalBitmap;
-        this.imageName = image_name;
 
-        String root = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_PICTURES).toString();
-
-        File myDir = new File(root);
-        if(!myDir.exists()) myDir.mkdirs();
-        String fname = "Gotrex-" + image_name + picNum + ".jpg";
-        picNum++;
-        File file = new File(myDir, fname);
-        Log.i("LOAD", root + fname);
-        try {
-            FileOutputStream out = new FileOutputStream(file);
-            finalBitmap.compress(Bitmap.CompressFormat.JPEG, 90, out);
-            out.flush();
-            out.close();
-        } catch (Exception e) {
-            e.printStackTrace();
-        }
-    }
-
-    public static Bitmap takeScreenshot(View v) {
-        v.setDrawingCacheEnabled(true);
-        v.buildDrawingCache(true);
-        Bitmap b = Bitmap.createBitmap(v.getDrawingCache());
-        v.setDrawingCacheEnabled(false);
-        return b;
-    }
-
-    public static Bitmap rootViewShot(View v) {
-        return takeScreenshot(v.getRootView());
-    }
 
 }
