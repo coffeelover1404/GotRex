@@ -39,13 +39,13 @@ public class CaptureScreen {
 
             // Permission is not granted
             if (ActivityCompat.shouldShowRequestPermissionRationale(thisActivity,
-                    Manifest.permission.READ_CONTACTS)) {
+                    Manifest.permission.WRITE_EXTERNAL_STORAGE)) {
                 // Show an explanation to the user *asynchronously* -- don't block
                 // this thread waiting for the user's response! After the user
                 // sees the explanation, try again to request the permission.
                 //return false;
                 AlertDialog.Builder mBuilder = new AlertDialog.Builder(thisActivity); // check if player really name the baby
-                mBuilder.setMessage("You need to allow GotRex to access your storage to save a photo").setCancelable(false).setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                mBuilder.setMessage("You need to allow Gotrex to access your storage to save a photo \nGo to Setting -> App -> Gotrex").setCancelable(false).setPositiveButton("OK", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         dialog.cancel();

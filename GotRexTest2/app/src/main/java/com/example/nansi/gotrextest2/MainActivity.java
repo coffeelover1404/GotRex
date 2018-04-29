@@ -28,10 +28,7 @@ import java.util.Date;
 
 public class MainActivity extends AppCompatActivity {
 
-    /*TextView mTextMessage;
-    TextView text;*/
     private GotRexDatabase gotRexDatabase;
-    public boolean setName = false;
     MediaPlayer song;
     Bitmap b;
     Button cameraBtn;
@@ -113,11 +110,8 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        //mTextMessage = (TextView) findViewById(R.id.mTextMessage);
-        //text = (TextView) findViewById(R.id.text);
         if (lastAccess.equals("") == false) //have used before
         {
-            //text.setText("Hello have used this app before" + lastAccess);
             try {
                 double newScore = 0;
                 SimpleDateFormat sdf = new SimpleDateFormat("hh:mm:ss");
@@ -132,15 +126,10 @@ public class MainActivity extends AppCompatActivity {
                 //calculate to change status
                 long millse = Date1.getTime() - Date2.getTime();
                 long mills = Math.abs(millse);
-                /*int Hours = (int) (mills/(1000 * 60 * 60));
-                int Mins = (int) (mills/(1000*60)) % 60;
-                long Secs = (int) (mills / 1000) % 60;*/
-                //String diff = Hours + ":" + Mins + ":" + Secs;
 
                 // get second
                 double sec = mills / 1000;
-                //mTextMessage.setText(String.valueOf(sec));
-                //TODO: send second to database to calculate
+                //deduct the score
                 gotRexDatabase.reduceStatus(sec);
 
             } catch (ParseException e) {
@@ -159,7 +148,7 @@ public class MainActivity extends AppCompatActivity {
             alert.show();
         }
 
-        BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
+        BottomNavigationView navigation = (BottomNavigationView)findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
         BottomNavigationViewHelper.removeShiftMode(navigation);
 
