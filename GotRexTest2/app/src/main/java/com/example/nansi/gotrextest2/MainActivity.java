@@ -120,11 +120,11 @@ public class MainActivity extends AppCompatActivity {
                 String currentTime = sdf.format(systemDate); //build up string keep current time
 
                 //parse to date
-                Date Date1 = sdf.parse(currentTime);
-                Date Date2 = sdf.parse(lastAccess); //put what we get from database here
+                Date time1 = sdf.parse(currentTime);
+                Date time2 = sdf.parse(lastAccess); //put what we get from database here
 
                 //calculate to change status
-                long millse = Date1.getTime() - Date2.getTime();
+                long millse = time1.getTime() - time2.getTime();
                 long mills = Math.abs(millse);
 
                 // get second
