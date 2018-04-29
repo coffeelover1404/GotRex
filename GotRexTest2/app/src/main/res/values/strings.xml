@@ -30,8 +30,11 @@
 
     <!-- For object in fragment-->
     <string name="Baby">Baby</string>
-    <string name="Food1">sushi</string>
-    <string name="Food2">Burger</string>
+    <string name="Food1">chicken</string>
+    <string name="Food2">burger</string>
+    <string name="Food3">cereal</string>
+    <string name="Food4">cake</string>
+    <string name="Food5">milk</string>
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>

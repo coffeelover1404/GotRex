@@ -24,14 +24,6 @@
         app:layout_constraintVertical_bias="0.466">
 
         <TextView
-            android:id="@+id/check"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="50dp"
-            android:layout_marginTop="100dp"
-            android:textSize="18sp" />
-
-        <TextView
             android:id="@+id/touchID"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -46,7 +38,6 @@
             android:layout_alignParentTop="true"
             android:layout_marginEnd="72dp"
             android:layout_marginTop="86dp"
-            android:text="TextView"
             android:textColor="@android:color/background_light"
             android:textSize="18sp"
             android:textStyle="bold" />
@@ -57,7 +48,8 @@
             android:layout_height="320dp"
             android:layout_below="@+id/touchID"
             android:layout_centerHorizontal="true"
-            android:background="#3498db" />
+            android:background="#3498db"
+            android:contentDescription="@string/Baby" />
 
     </RelativeLayout>
 </FrameLayout>

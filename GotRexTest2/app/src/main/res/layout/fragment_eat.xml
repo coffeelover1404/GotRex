@@ -23,7 +23,8 @@
             android:layout_height="280dp"
             android:layout_above="@+id/food1"
             android:layout_centerHorizontal="true"
-            android:background="#3498db" />
+            android:background="#3498db"
+            android:contentDescription="@string/Baby" />
 
         <ImageView
             android:id="@+id/food1"
@@ -32,6 +33,7 @@
             android:layout_alignBottom="@+id/food4"
             android:layout_alignParentStart="true"
             android:layout_marginBottom="14dp"
+            android:contentDescription="@string/Food1"
             android:src="@drawable/chic" />
 
         <ImageView
@@ -40,6 +42,7 @@
             android:layout_height="70dp"
             android:layout_alignTop="@+id/food4"
             android:layout_toEndOf="@+id/food1"
+            android:contentDescription="@string/Food2"
             android:src="@drawable/hamburger" />
 
         <ImageView
@@ -49,6 +52,7 @@
             android:layout_below="@+id/babyEat"
             android:layout_marginEnd="67dp"
             android:layout_toStartOf="@+id/food5"
+            android:contentDescription="@string/Food3"
             android:src="@drawable/oatmeal" />
 
         <ImageView
@@ -59,6 +63,7 @@
             android:layout_marginBottom="16dp"
             android:layout_marginEnd="8dp"
             android:layout_toStartOf="@+id/food5"
+            android:contentDescription="@string/Food4"
             android:src="@drawable/cake2" />
 
         <ImageView
@@ -68,6 +73,7 @@
             android:layout_alignBottom="@+id/food1"
             android:layout_alignParentEnd="true"
             android:layout_marginEnd="14dp"
+            android:contentDescription="@string/Food5"
             android:src="@drawable/milk" />
 
     </RelativeLayout>
